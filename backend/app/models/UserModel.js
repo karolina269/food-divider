@@ -23,34 +23,31 @@ const User = new mongoose.Schema(
     timestamps: true,
   }
 );
-// User.pre("save", function (next) {
-//   const user = this;
 
-//   if (!user.isModified("password")) {
-//     return next();
-//   }
+User.pre("save", function (next) {
+  const user = this;
 
-//   bcrypt.genSalt(10, function (err, salt) {
-//     if (err) {
-//       res.send(err);
-//     }
+  if (!user.isModified("password")) {
+    return next();
+  }
 
-//     bcrypt.hash(user.password, salt, function (err, hash) {
-//       if (err) {
-//         res.send(err);
-//       }
+  bcrypt.genSalt(10, function (err, salt) {
+    if (err) {
+      res.send(err);
+    }
+    bcrypt.hash(user.password, salt, function (err, hash) {
+      if (err) {
+        res.send(err);
+      }
+      user.password = hash;
+      next();
+    });
+  });
+});
 
-//       user.password = hash;
-//       next();
-//     });
-//   });
-// });
-
-// User.methods.generateAuthToken = (user) => {
-//   const token = jwt.sign({ _id: user._id }, process.env.TOKEN_KEY, {
-//     expiresIn: "1h",
-//   });
-//   return token;
-// };
+User.methods.generateAuthToken = (user) => {
+  const token = jwt.sign({ _id: user._id }, "secretKey", { expiresIn: "1h" });
+  return token;
+};
 
 module.exports = mongoose.model("User", User);

@@ -15,7 +15,7 @@ module.exports = {
   show: (req, res) => {
     Dish.findById(req.params.id)
       .then((dish) => {
-        res.send(dish);
+        res.json(dish);
       })
       .catch((err) => {
         res.json(err);
@@ -44,7 +44,7 @@ module.exports = {
         res.json(dish);
       })
       .catch((err) => {
-        res.send(err);
+        res.json(err);
       });
   },
   select: (req, res) => {
@@ -53,7 +53,7 @@ module.exports = {
         res.json(dish);
       })
       .catch((err) => {
-        res.send(err);
+        res.json(err);
       });
   },
   unselect: (req, res) => {
@@ -62,7 +62,7 @@ module.exports = {
         res.json(dish);
       })
       .catch((err) => {
-        res.send(err);
+        res.json(err);
       });
   },
   delete: (req, res) => {
