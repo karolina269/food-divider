@@ -36,8 +36,7 @@ module.exports = {
 
           if (logged) {
             const token = user.generateAuthToken(user);
-            res.cookie("AuthToken", token);
-            res.redirect("/");
+            // res.json("AuthToken", token);
           } else {
             res.json({
               error: true,
@@ -54,7 +53,6 @@ module.exports = {
   },
   logout: (_req, res) => {
     // res.clearCookie("AuthToken");
-    // res.redirect('/user/login');
   },
   delete: (req, res) => {
     User.findByIdAndDelete(req.params.id)
