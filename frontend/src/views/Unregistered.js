@@ -11,7 +11,6 @@ const Unregistered = (props) => {
 
   const switchForm = (e) => {
     setCurrentForm(e.target.value);
-    console.log("przełączam formularz");
   };
 
   return (

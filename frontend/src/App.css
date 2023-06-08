@@ -5,6 +5,11 @@
   font-family: "Space Grotesk", sans-serif;
 }
 
+.App {
+  max-width: 600px;
+  margin: auto;
+}
+
 :root {
   --accent: #b9ff66;
   --dark: #191a23;

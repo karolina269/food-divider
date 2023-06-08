@@ -1,9 +1,12 @@
 header {
-  display: flex;
-  justify-content: center;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  position: relative;
 }
 
 h1 {
+  display: inline-block;
   color: var(--dark);
   background-color: var(--accent);
   margin: 0.5em 0 0 0;

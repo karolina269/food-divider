@@ -14,10 +14,6 @@ const Signup = (props) => {
     confirmPassword: "",
   });
 
-  const [signupMessage, setSignupMessage] = useState("");
-
-  const [signupDone, setSignupDone] = useState(false);
-
   const validate = () => {
     let validationErrors = {
       email: false,
@@ -120,9 +116,7 @@ const Signup = (props) => {
           {errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
         </div>
         <div className="formField">
-          <button className="btn" disabled={signupDone}>
-            Signup
-          </button>
+          <button className="btn">Signup</button>
         </div>
       </form>
     </main>
