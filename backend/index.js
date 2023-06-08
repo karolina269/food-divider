@@ -1,3 +1,4 @@
+require("dotenv").config();
 const config = require("./config");
 const express = require("express");
 const app = express();
@@ -7,7 +8,7 @@ const cookieParser = require("cookie-parser");
 
 mongoose.connect("mongodb://127.0.0.1:27017/food-divider");
 
-// app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.json());
 app.use(cors());
@@ -25,6 +26,6 @@ app.get("/", (req, res) => {
   res.send("home");
 });
 
-app.listen(config.app.port, () => {
-  console.log("express server is up");
+app.listen(process.env.APP_PORT || 3005, () => {
+  console.log("express server is up, port: ", process.env.APP_PORT || 3005);
 });

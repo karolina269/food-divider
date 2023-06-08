@@ -1,0 +1,37 @@
+.unregistered form.formPicker .radioWrapper {
+  display: inline-block;
+  border-radius: 100px;
+  overflow: hidden;
+  padding: 0;
+}
+
+.unregistered form.formPicker input[type="radio"] {
+  display: block;
+  width: 1.5em;
+  height: 1.5em;
+  margin: 0 0.5em 0 0;
+  -webkit-appearance: none;
+  border: 1px solid #000000;
+  border-radius: 50%;
+  outline: none;
+}
+
+.unregistered form.formPicker input[type="radio"]:before {
+  background: #ffffff;
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.unregistered form.formPicker input[type="radio"]:checked:before {
+  background: var(--accent);
+  outline: 0.3em solid #ffffff;
+  outline-offset: -0.3em;
+}
+
+.unregistered form.formPicker label {
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 3em;
+}

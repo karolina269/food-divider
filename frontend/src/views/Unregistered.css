@@ -1,0 +1,39 @@
+.unregistered {
+  background-color: var(--light);
+  max-width: 600px;
+  margin: 1rem auto;
+  padding: 3rem;
+  border-radius: 25px;
+}
+
+.unregistered form {
+  margin: auto;
+  max-width: 75%;
+}
+
+.unregistered form .formField {
+  width: 100%;
+  margin-top: 1em;
+}
+
+.unregistered form .formField label {
+  font-size: 0.75em;
+  line-height: 2em;
+}
+
+.unregistered form .formField input {
+  width: 100%;
+  padding: 1em;
+  border-width: 1px;
+  border-radius: 0.75em;
+  /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
+}
+
+.unregistered form .formField .btn {
+  width: 100%;
+  text-align: center;
+  margin: 2em auto;
+  border-width: 1px;
+  /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
+  cursor: pointer;
+}

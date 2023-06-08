@@ -2,76 +2,55 @@ const Dish = require("../models/DishModel");
 const User = require("../models/UserModel");
 
 module.exports = {
-  //index - wyswietl wszystkie naczynia zalogowanego użytkownika
   index: (req, res) => {
-    Dish.find({ user: "647c9f5d7f1b97e42a36e4e2" })
+    const findConfig = req.query.userId ? { user: req.query.userId } : {};
+    Dish.find(findConfig)
+      .populate("user")
       .then((dishes) => {
-        res.json(dishes);
+        res.status(200).json(dishes);
       })
       .catch((err) => {
-        res.json(err);
+        res.status(500).json({ error: err });
       });
   },
   show: (req, res) => {
     Dish.findById(req.params.id)
+      .populate("user")
       .then((dish) => {
-        res.json(dish);
+        res.status(200).json(dish);
       })
       .catch((err) => {
-        res.json(err);
+        res.status(500).json({ error: err });
       });
   },
   create: (req, res) => {
-    const newDish = new Dish({ ...req.body, user: "647c9f5d7f1b97e42a36e4e2" });
-    newDish
-      .save()
-      .then(() => {
-        User.updateOne({ _id: "647c9f5d7f1b97e42a36e4e2" }, { $push: { dishes: newDish._id } })
-          .then(() => {
-            res.json(newDish);
-          })
-          .catch((err) => {
-            res.json(err);
-          });
-      })
-      .catch((err) => {
-        res.json(err);
-      });
+    const newDish = new Dish({ ...req.body, user: req.userId });
+    newDish.save();
+    User.updateOne({ _id: req.userId }, { $push: { dishes: newDish._id } }).catch((err) => {
+      res.status(500).json({ error: err });
+    });
+    res.status(201).json(newDish);
   },
   update: (req, res) => {
     Dish.findByIdAndUpdate(req.params.id, req.body)
-      .then((dish) => {
-        res.json(dish);
+      .then(() => {
+        res.status(204);
       })
       .catch((err) => {
-        res.json(err);
-      });
-  },
-  select: (req, res) => {
-    Dish.findByIdAndUpdate(req.params.id, { selected: true })
-      .then((dish) => {
-        res.json(dish);
-      })
-      .catch((err) => {
-        res.json(err);
-      });
-  },
-  unselect: (req, res) => {
-    Dish.findByIdAndUpdate(req.params.id, { selected: false })
-      .then((dish) => {
-        res.json(dish);
-      })
-      .catch((err) => {
-        res.json(err);
+        res.status(500).json({ error: err });
       });
   },
   delete: (req, res) => {
-    Dish.findByIdAndDelete(req.params.id, { user: "647c9f5d7f1b97e42a36e4e2" })
-      .then(() => {
-        User.updateOne({ _id: "647c9f5d7f1b97e42a36e4e2" }, { $pull: { dishes: req.params.id } });
+    Dish.findByIdAndDelete(req.params.id)
+      .populate("user")
+      .then((dish) => {
+        User.updateOne({ _id: dish.user._id }, { $pull: { dishes: req.params.id } }).catch((err) => {
+          res.status(500).json({ error: err });
+        });
+        res.status(204);
       })
       .catch((err) => {
-        res.json(err);
+        res.status(500).json({ error: err });
       });
   },
 };

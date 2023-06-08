@@ -1,13 +1,14 @@
 const User = require("../models/UserModel");
+const bcrypt = require("bcrypt");
 
 module.exports = {
   show: (req, res) => {
     User.findOne(req.params.id)
-      .then(() => {
-        res.json(req);
+      .then((user) => {
+        res.status(200).json(user);
       })
       .catch((err) => {
-        res.json(err);
+        res.status(500).json({ error: err });
       });
   },
   create: (req, res) => {
@@ -15,54 +16,63 @@ module.exports = {
     newUser
       .save()
       .then(() => {
-        res.json(req);
+        res.status(201).json({ message: "Account created", email: newUser.email });
       })
       .catch((err) => {
-        res.json(err);
+        if (err.code === 11000) {
+          res.status(409).json({
+            error: true,
+            message: "User already exists",
+          });
+        }
       });
   },
   login: (req, res) => {
     User.findOne({ email: req.body.email })
       .then((user) => {
+        if (!user) {
+          res.status(400).json({
+            error: true,
+            message: "User does not exist",
+          });
+          return;
+        }
+
         bcrypt.compare(req.body.password, user.password, (err, logged) => {
           if (err) {
-            res.json({
+            res.status(500).json({
               error: true,
               message: "Login error",
-              user: { email: req.body.email, password: "" },
             });
             return;
           }
 
           if (logged) {
             const token = user.generateAuthToken(user);
-            // res.json("AuthToken", token);
+            res.status(200).json({
+              email: user.email,
+              jwt: token,
+            });
           } else {
-            res.json({
+            res.status(400).json({
               error: true,
               message: "Login data do not match",
-              user: { email: req.body.email, password: "" },
             });
             return;
           }
         });
       })
       .catch((err) => {
-        res.send(err);
+        res.status(500).json({ error: err });
       });
-  },
-  logout: (_req, res) => {
-    // res.clearCookie("AuthToken");
   },
   delete: (req, res) => {
     User.findByIdAndDelete(req.params.id)
       .then(() => {
-        res.json(req);
-        // res.clearCookie("AuthToken");
-        // res.redirect('/user/login');
+        res.status(204);
       })
       .catch((err) => {
-        res.json(err);
+        res.status(500).json({ error: err });
       });
   },
 };

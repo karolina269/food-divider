@@ -1,0 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
+
+* {
+  box-sizing: border-box;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+:root {
+  --accent: #b9ff66;
+  --dark: #191a23;
+  --light: #f3f3f3;
+}
+
+::selection {
+  background: var(--accent); /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  background: var(--accent); /* Gecko Browsers */
+}
+
+.btn {
+  background-color: var(--dark);
+  color: #ffffff;
+  padding: 1em;
+  border-width: 1px;
+  border-radius: 0.75em;
+}
+
+input {
+  accent-color: var(--accent);
+}

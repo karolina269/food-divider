@@ -6,8 +6,6 @@ router.get("/all", eaterController.index);
 router.get("/:id", eaterController.show);
 router.post("/add", eaterController.create);
 router.post("/edit/:id", eaterController.update);
-router.post("/select/:id", eaterController.select);
-router.post("/unselect/:id", eaterController.unselect);
 router.delete("/delete/:id", eaterController.delete);
 
 module.exports = router;
