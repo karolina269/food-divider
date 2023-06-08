@@ -28,7 +28,6 @@ in progress
 
 ## To Do
 
-- user controllers and routes
-- auth 0
 - frontend
 - frontend-mobile
+- auth0 ?
