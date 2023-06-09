@@ -9,13 +9,16 @@ import "./Unauthorized.css";
 const Unauthorized = (props) => {
   const [currentForm, setCurrentForm] = useState("signup");
 
+  if (props.user) {
+    return <Navigate to="/" />;
+  }
+
   const switchForm = (e) => {
     setCurrentForm(e.target.value);
   };
 
   return (
     <main className="unauthorized">
-      {props.user && <Navigate to="/" />}
       <FormPicker switchForm={switchForm} />
       {currentForm === "signup" ? <Signup /> : <Login setUser={props.setUser} />}
     </main>
