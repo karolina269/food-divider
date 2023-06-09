@@ -1,16 +1,19 @@
 import { useState } from "react";
+import axios from "axios";
 import Header from "./components/Header";
-import Unregistered from "./views/Unregistered";
+import AppRoutes from "./routes/AppRoutes";
 
 import "./App.css";
 
 function App() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
 
+  axios.defaults.headers.common["Authorization"] = user ? user.jwt : "";
+
   return (
     <div className="App">
       <Header />
-      <Unregistered user={user} setUser={setUser} />
+      <AppRoutes user={user} setUser={setUser} />
     </div>
   );
 }

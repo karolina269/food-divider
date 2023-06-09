@@ -15,8 +15,9 @@ module.exports = {
     const newUser = User(req.body);
     newUser
       .save()
-      .then(() => {
-        res.status(201).json({ message: "Account created", email: newUser.email });
+      .then((user) => {
+        const token = user.generateAuthToken(user);
+        res.status(201).json({ message: "Account created", jwt: token, email: newUser.email });
       })
       .catch((err) => {
         if (err.code === 11000) {

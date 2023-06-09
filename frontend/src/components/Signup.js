@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 
-const Signup = (props) => {
+const Signup = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",

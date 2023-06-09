@@ -1,11 +1,11 @@
-.unregistered form.formPicker .radioWrapper {
+.unauthorized form.formPicker .radioWrapper {
   display: inline-block;
   border-radius: 100px;
   overflow: hidden;
   padding: 0;
 }
 
-.unregistered form.formPicker input[type="radio"] {
+.unauthorized form.formPicker input[type="radio"] {
   display: block;
   width: 1.5em;
   height: 1.5em;
@@ -16,7 +16,7 @@
   outline: none;
 }
 
-.unregistered form.formPicker input[type="radio"]:before {
+.unauthorized form.formPicker input[type="radio"]:before {
   background: #ffffff;
   content: "";
   display: block;
@@ -24,13 +24,13 @@
   height: 100%;
   border-radius: 50%;
 }
-.unregistered form.formPicker input[type="radio"]:checked:before {
+.unauthorized form.formPicker input[type="radio"]:checked:before {
   background: var(--accent);
   outline: 0.3em solid #ffffff;
   outline-offset: -0.3em;
 }
 
-.unregistered form.formPicker label {
+.unauthorized form.formPicker label {
   display: inline-block;
   vertical-align: top;
   margin-right: 3em;
