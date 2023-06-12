@@ -1,0 +1,27 @@
+.diners .dinersSelection {
+  display: inline-block;
+  width: 50%;
+}
+
+.diners .dinersServings {
+  display: inline-block;
+  width: 50%;
+  float: right;
+  text-align: right;
+}
+
+.diners .dinersServings .chosenDinersList {
+  list-style-type: none;
+}
+
+.diners .dinersServings .chosenDinersList li {
+  margin-top: 1em;
+}
+
+.diners .dinersServings .chosenDinersList span {
+  background-color: var(--accent);
+  font-weight: 500;
+  border: 2px solid var(--dark);
+  border-radius: 0.25em;
+  padding: 0.25em;
+}

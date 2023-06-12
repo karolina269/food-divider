@@ -3,8 +3,8 @@ const router = express.Router();
 const dishController = require("../controllers/dishController");
 
 router.get("/all", dishController.index);
-router.get("/:id", dishController.show);
 router.post("/add", dishController.create);
+router.get("/:id", dishController.show);
 router.post("/edit/:id", dishController.update);
 router.delete("/delete/:id", dishController.delete);
 

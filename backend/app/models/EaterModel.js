@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const Eater = new mongoose.Schema({
-  name: { type: String, required: true },
+  name: { type: String, required: true, unique: true },
   calories: { type: Number, required: true },
   selected: { type: Boolean, required: true },
   user: {

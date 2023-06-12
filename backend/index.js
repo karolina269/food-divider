@@ -13,18 +13,16 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(cors());
 
+const authMiddleware = require("./app/middlewares/authMiddleware");
+
 const dishRouter = require("./app/router/dishRouter");
-app.use("/dishes", dishRouter);
+app.use("/dishes", authMiddleware, dishRouter);
 
 const eaterRouter = require("./app/router/eaterRouter");
-app.use("/eaters", eaterRouter);
+app.use("/eaters", authMiddleware, eaterRouter);
 
 const userRouter = require("./app/router/userRouter");
 app.use("/user", userRouter);
-
-app.get("/", (req, res) => {
-  res.send("home");
-});
 
 app.listen(process.env.APP_PORT || 3005, () => {
   console.log("express server is up, port: ", process.env.APP_PORT || 3005);

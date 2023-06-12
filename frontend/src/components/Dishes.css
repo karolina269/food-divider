@@ -1,0 +1,34 @@
+.dishesSelection {
+  width: 50%;
+}
+
+.modal {
+  position: absolute;
+  left: 50%;
+  top: 4.5rem;
+  transform: translate(-50%, 0);
+  background-color: var(--light);
+  width: 600px;
+  height: 300px;
+  padding: 3rem;
+  border-radius: 25px;
+}
+
+.closeModal {
+  float: right;
+}
+
+.formNewDish {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.formNewDish button {
+  margin-top: 1rem;
+}
+
+.selectDish {
+  padding: 0.5em;
+}

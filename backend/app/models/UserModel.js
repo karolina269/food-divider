@@ -47,7 +47,7 @@ User.pre("save", function (next) {
 
 User.methods.generateAuthToken = (user) => {
   const token = jwt.sign({ _id: user._id }, process.env.TOKEN_KEY, {
-    expiresIn: "1h",
+    expiresIn: "1000h",
   });
   return token;
 };

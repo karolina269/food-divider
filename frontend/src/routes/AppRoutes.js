@@ -6,7 +6,7 @@ import Home from "../views/Home";
 const AppRoutes = (props) => {
   return (
     <Routes>
-      <Route element={<PrivateRoutes />}>
+      <Route element={<PrivateRoutes user={props.user} />}>
         <Route path="/" element={<Home user={props.user} />} />
       </Route>
       <Route path="/unauthorized" element={<Unauthorized setUser={props.setUser} user={props.user} />} />

@@ -3,7 +3,7 @@ const User = require("../models/UserModel");
 
 module.exports = {
   index: (req, res) => {
-    const findConfig = req.query.userId ? { user: req.query.userId } : {};
+    const findConfig = req.userId ? { user: req.userId } : {};
     Dish.find(findConfig)
       .populate("user")
       .then((dishes) => {
