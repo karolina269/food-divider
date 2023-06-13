@@ -19,8 +19,8 @@ const EditDishModal = (props) => {
 
   const editDish = (e) => {
     e.preventDefault();
-    console.log("edytuje naczynie o id:", props.chosenDish.id);
-    axios.get("http://localhost:3005/dishes/edit/" + props.chosenDish.id, formData).then(() => {
+    console.log("edytuje naczynie o id:", props.chosenDish.key);
+    axios.post("http://localhost:3005/dishes/edit/" + props.chosenDish.key, formData).then(() => {
       props.getDishes();
     });
   };

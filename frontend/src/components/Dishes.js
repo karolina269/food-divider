@@ -77,7 +77,7 @@ const Dishes = (props) => {
         <button className="closeModal" onClick={handleCloseModalNew}>
           x
         </button>
-        <NewDishModal setDishes={setDishes} />
+        <NewDishModal setDishes={setDishes} dishes={dishes} />
       </ReactModal>
     </section>
   );
