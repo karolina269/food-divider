@@ -12,10 +12,10 @@ const User = new mongoose.Schema(
         ref: "Dish",
       },
     ],
-    eaters: [
+    diners: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Eater",
+        ref: "Diner",
       },
     ],
   },

@@ -1,4 +1,5 @@
 .dishesSelection {
+  display: inline-block;
   width: 50%;
 }
 
@@ -31,4 +32,8 @@
 
 .selectDish {
   padding: 0.5em;
+}
+
+.btn.new.dish {
+  display: block;
 }

@@ -1,38 +1,38 @@
-const Dish = require("../models/DishModel");
+const Diner = require("../models/DinerModel");
 const User = require("../models/UserModel");
 
 module.exports = {
   index: (req, res) => {
     const findConfig = req.userId ? { user: req.userId } : {};
-    Dish.find(findConfig)
+    Diner.find(findConfig)
       .populate("user")
-      .then((dishes) => {
-        res.status(200).json(dishes);
+      .then((diners) => {
+        res.status(200).json(diners);
       })
       .catch((err) => {
         res.status(500).json({ error: err });
       });
   },
   // show: (req, res) => {
-  //   Dish.findById(req.params.id)
+  //   Diner.findById(req.params.id)
   //     .populate("user")
-  //     .then((dish) => {
-  //       res.status(200).json(dish);
+  //     .then((diner) => {
+  //       res.send(diner);
   //     })
   //     .catch((err) => {
   //       res.status(500).json({ error: err });
   //     });
   // },
   create: (req, res) => {
-    const newDish = new Dish({ ...req.body, user: req.userId });
-    newDish.save();
-    User.updateOne({ _id: req.userId }, { $push: { dishes: newDish._id } }).catch((err) => {
+    const newDiner = new Diner({ ...req.body, user: req.userId });
+    newDiner.save();
+    User.updateOne({ _id: req.userId }, { $push: { diners: newDiner._id } }).catch((err) => {
       res.status(500).json({ error: err });
     });
-    res.status(201).json(newDish);
+    res.status(201).json(newDiner);
   },
   update: (req, res) => {
-    Dish.findByIdAndUpdate(req.params.id, req.body)
+    Diner.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
         res.status(204);
       })
@@ -41,10 +41,10 @@ module.exports = {
       });
   },
   delete: (req, res) => {
-    Dish.findByIdAndDelete(req.params.id)
+    Diner.findByIdAndDelete(req.params.id)
       .populate("user")
-      .then((dish) => {
-        User.updateOne({ _id: dish.user._id }, { $pull: { dishes: req.params.id } }).catch((err) => {
+      .then((diner) => {
+        User.updateOne({ _id: diner.user._id }, { $pull: { diners: req.params.id } }).catch((err) => {
           res.status(500).json({ error: err });
         });
         res.status(204);

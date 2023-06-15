@@ -1,6 +1,11 @@
-.diners .dinersSelection {
+.diners .chooseDiners {
   display: inline-block;
   width: 50%;
+}
+
+.diners .chooseDiners .dinersButtonsWrapper {
+  display: flex;
+  justify-content: space-between;
 }
 
 .diners .dinersServings {

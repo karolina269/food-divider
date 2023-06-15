@@ -20,9 +20,9 @@ const NewDishModal = (props) => {
   const addNewDish = (e) => {
     e.preventDefault();
     axios.post("http://localhost:3005/dishes/add", formData).then((res) => {
-      console.log(res.data);
       props.setDishes(props.dishes.concat(res.data));
     });
+    props.handleCloseModalNew();
   };
 
   return (
@@ -33,9 +33,7 @@ const NewDishModal = (props) => {
       <label htmlFor="weight">Weight:</label>
       <input type="number" name="weight" placeholder="dish weight" value={formData.weight} onChange={handleInputChange} />
 
-      <button className="btn" accessKey="a" title="acces key: a">
-        Add
-      </button>
+      <button className="btn">Add</button>
     </form>
   );
 };

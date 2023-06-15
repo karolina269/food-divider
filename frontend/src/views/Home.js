@@ -4,7 +4,7 @@ import Diners from "../components/Diners";
 
 import "./Home.css";
 
-const Home = (props) => {
+const Home = () => {
   const [totalWeight, setTotalWeight] = useState(0);
   const [chosenDish, setChosenDish] = useState({});
 
@@ -21,9 +21,9 @@ const Home = (props) => {
         <input className="totalWeight" type="number" id="totalWeight" name="totalWeight" onChange={handleWeightChange} />
       </section>
       <hr></hr>
-      <Diners user={props.user} totalWeight={totalWeight} chosenDish={chosenDish} />
+      <Diners totalWeight={totalWeight} chosenDish={chosenDish} />
       <hr></hr>
-      <Dishes user={props.user} chosenDish={chosenDish} setChosenDish={setChosenDish} />
+      <Dishes chosenDish={chosenDish} setChosenDish={setChosenDish} />
     </main>
   );
 };

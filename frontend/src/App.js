@@ -5,7 +5,7 @@ import AppRoutes from "./routes/AppRoutes";
 
 import "./App.css";
 
-function App() {
+const App = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
 
   axios.defaults.headers.common["Authorization"] = user ? user.jwt : "";
@@ -16,6 +16,6 @@ function App() {
       <AppRoutes user={user} setUser={setUser} />
     </div>
   );
-}
+};
 
 export default App;

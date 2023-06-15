@@ -4,6 +4,7 @@ import ReactModal from "react-modal";
 import Select from "react-select";
 import NewDishModal from "./NewDishModal";
 import EditDishModal from "./EditDishModal";
+import DeleteDishModal from "./DeleteDishModal";
 
 import "./Dishes.css";
 
@@ -13,6 +14,8 @@ const Dishes = (props) => {
   const [dishes, setDishes] = useState([]);
   const [showModalNew, setShowModalNew] = useState(false);
   const [showModalEdit, setShowModalEdit] = useState(false);
+  const [showModalDelete, setShowModalDelete] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(true);
 
   const getDishes = () => {
     axios.get("http://localhost:3005/dishes/all").then((res) => {
@@ -25,6 +28,7 @@ const Dishes = (props) => {
   }, []);
 
   const chooseDish = (e) => {
+    console.log(e);
     props.setChosenDish(e);
   };
 
@@ -44,6 +48,20 @@ const Dishes = (props) => {
     setShowModalEdit(false);
   };
 
+  const handleOpenModalDelete = () => {
+    setShowModalDelete(true);
+  };
+
+  const handleCloseModalDelete = () => {
+    setShowModalDelete(false);
+  };
+
+  useEffect(() => {
+    if (!(Object.keys(props.chosenDish).length === 0 && props.chosenDish.constructor === Object)) {
+      setIsDisabled(false);
+    }
+  }, [props.chosenDish]);
+
   return (
     <section className="dishes">
       <h2 className="sectionTitle">Choose the dish</h2>
@@ -59,9 +77,20 @@ const Dishes = (props) => {
         onChange={chooseDish}
       />
 
-      <button className="btn edit" onClick={handleOpenModalEdit}>
+      <button className="btn edit" onClick={handleOpenModalEdit} disabled={isDisabled}>
         Edit
       </button>
+
+      <button className="btn delete" onClick={handleOpenModalDelete} disabled={isDisabled}>
+        Delete
+      </button>
+
+      <ReactModal className="modal" isOpen={showModalDelete} contentLabel="Delete dish">
+        <button className="closeModal" onClick={handleCloseModalDelete}>
+          x
+        </button>
+        <DeleteDishModal getDishes={getDishes} chosenDish={props.chosenDish} handleCloseModalDelete={handleCloseModalDelete} />
+      </ReactModal>
 
       <ReactModal className="modal" isOpen={showModalEdit} contentLabel="edit dish form">
         <button className="closeModal" onClick={handleCloseModalEdit}>
@@ -70,14 +99,14 @@ const Dishes = (props) => {
         <EditDishModal getDishes={getDishes} dishes={dishes} chosenDish={props.chosenDish} />
       </ReactModal>
 
-      <button className="btn new" onClick={handleOpenModalNew}>
+      <button className="btn new dish" onClick={handleOpenModalNew}>
         New dish <span>+</span>
       </button>
       <ReactModal className="modal" isOpen={showModalNew} contentLabel="New dish form">
         <button className="closeModal" onClick={handleCloseModalNew}>
           x
         </button>
-        <NewDishModal setDishes={setDishes} dishes={dishes} />
+        <NewDishModal setDishes={setDishes} dishes={dishes} handleCloseModalNew={handleCloseModalNew} />
       </ReactModal>
     </section>
   );

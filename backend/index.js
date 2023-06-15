@@ -18,8 +18,8 @@ const authMiddleware = require("./app/middlewares/authMiddleware");
 const dishRouter = require("./app/router/dishRouter");
 app.use("/dishes", authMiddleware, dishRouter);
 
-const eaterRouter = require("./app/router/eaterRouter");
-app.use("/eaters", authMiddleware, eaterRouter);
+const dinerRouter = require("./app/router/dinerRouter");
+app.use("/diners", authMiddleware, dinerRouter);
 
 const userRouter = require("./app/router/userRouter");
 app.use("/user", userRouter);
