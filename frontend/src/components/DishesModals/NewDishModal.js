@@ -26,12 +26,12 @@ const NewDishModal = (props) => {
   };
 
   return (
-    <form className="formNewDish" onSubmit={addNewDish}>
+    <form className="formDish" onSubmit={addNewDish}>
       <label htmlFor="name">Name:</label>
-      <input type="text" name="name" placeholder="dish name" value={formData.name} onChange={handleInputChange} />
+      <input type="text" name="name" placeholder="name" value={formData.name} onChange={handleInputChange} />
 
       <label htmlFor="weight">Weight:</label>
-      <input type="number" name="weight" placeholder="dish weight" value={formData.weight} onChange={handleInputChange} />
+      <input type="number" name="weight" placeholder="weight" value={formData.weight} onChange={handleInputChange} />
 
       <button className="btn">Add</button>
     </form>

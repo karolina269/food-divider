@@ -3,8 +3,8 @@ import axios from "axios";
 
 const EditDishModal = (props) => {
   const [formData, setFormData] = useState({
-    name: "",
-    weight: "",
+    name: props.chosenDish.name,
+    weight: props.chosenDish.weight,
   });
 
   const handleInputChange = (e) => {
@@ -26,16 +26,14 @@ const EditDishModal = (props) => {
   };
 
   return (
-    <form className="formNewDish" onSubmit={editDish}>
+    <form className="formDish" onSubmit={editDish}>
       <label htmlFor="name">Name:</label>
       <input type="text" name="name" placeholder="dish name" value={formData.name} onChange={handleInputChange} />
 
       <label htmlFor="weight">Weight:</label>
       <input type="number" name="weight" placeholder="dish weight" value={formData.weight} onChange={handleInputChange} />
 
-      <button className="btn" accessKey="s" title="acces key: s">
-        Save
-      </button>
+      <button className="btn">Save</button>
     </form>
   );
 };

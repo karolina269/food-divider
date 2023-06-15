@@ -2,9 +2,9 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import ReactModal from "react-modal";
 import Select from "react-select";
-import NewDishModal from "./NewDishModal";
-import EditDishModal from "./EditDishModal";
-import DeleteDishModal from "./DeleteDishModal";
+import NewDishModal from "./DishesModals/NewDishModal";
+import EditDishModal from "./DishesModals/EditDishModal";
+import DeleteDishModal from "./DishesModals/DeleteDishModal";
 
 import "./Dishes.css";
 

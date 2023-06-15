@@ -28,10 +28,10 @@ const NewDinerModal = (props) => {
   return (
     <form className="formNewDiner" onSubmit={addNewDiner}>
       <label htmlFor="name">Name:</label>
-      <input type="text" name="name" placeholder="diner name" value={formData.name} onChange={handleInputChange} />
+      <input type="text" name="name" placeholder="name" value={formData.name} onChange={handleInputChange} />
 
       <label htmlFor="calories">Calories:</label>
-      <input type="number" name="calories" placeholder="diner calories" value={formData.calories} onChange={handleInputChange} />
+      <input type="number" name="calories" placeholder="daily calorie intake" value={formData.calories} onChange={handleInputChange} />
 
       <button className="btn">Add</button>
     </form>

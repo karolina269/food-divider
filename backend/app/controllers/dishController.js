@@ -13,16 +13,6 @@ module.exports = {
         res.status(500).json({ error: err });
       });
   },
-  // show: (req, res) => {
-  //   Dish.findById(req.params.id)
-  //     .populate("user")
-  //     .then((dish) => {
-  //       res.status(200).json(dish);
-  //     })
-  //     .catch((err) => {
-  //       res.status(500).json({ error: err });
-  //     });
-  // },
   create: (req, res) => {
     const newDish = new Dish({ ...req.body, user: req.userId });
     newDish.save();

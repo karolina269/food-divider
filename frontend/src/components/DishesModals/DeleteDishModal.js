@@ -10,9 +10,9 @@ const DeleteDishModal = (props) => {
   };
 
   return (
-    <section>
-      Are you sure you want to delete {props.chosenDish.name}?
-      <button className="btn" accessKey="y" title="acces key: y" onClick={deleteDish}>
+    <section className="formDish">
+      Are you sure you want to delete <span>{props.chosenDish.name}?</span>
+      <button className="btn" onClick={deleteDish}>
         Yes
       </button>
     </section>

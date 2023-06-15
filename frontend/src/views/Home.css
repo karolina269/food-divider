@@ -18,8 +18,10 @@ button {
   display: inline-block;
   cursor: pointer;
   font-size: 0.9em;
+  border-style: solid;
 }
-button:disabled {
+button:disabled,
+button:hover:disabled {
   cursor: auto;
   background-color: var(--light);
   color: var(--dark);
@@ -27,6 +29,20 @@ button:disabled {
 
 select option {
   padding: 0.5em;
+}
+
+.btn {
+  background-color: var(--dark);
+  color: #ffffff;
+  padding: 1em;
+  border-width: 1px;
+  border-radius: 0.75em;
+}
+
+.btn:hover {
+  background-color: var(--accent);
+  color: var(--dark);
+  border-color: var(--accent);
 }
 
 .btn.new,
@@ -58,6 +74,33 @@ select option {
 
 input.totalWeight {
   float: right;
-  padding: 0.5em;
-  width: 25%;
+  padding: 0.3em;
+  max-width: 25%;
+  font-weight: 600;
+  font-size: 1.1em;
+  text-align: center;
+  border-radius: 2px;
+  border: 2px solid var(--dark);
+  outline: -webkit-focus-ring-color auto 1px;
+}
+
+.modal {
+  position: absolute;
+  left: 50%;
+  top: 4.5rem;
+  transform: translate(-50%, 0);
+  background-color: var(--light);
+  width: 600px;
+  padding: 3rem;
+  border-radius: 25px;
+}
+
+.closeModal {
+  float: right;
+}
+
+.netWeightError {
+  color: red;
+  font-size: 0.75em;
+  text-align: right;
 }

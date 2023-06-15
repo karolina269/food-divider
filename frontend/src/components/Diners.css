@@ -8,6 +8,39 @@
   justify-content: space-between;
 }
 
+.formNewDiner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  gap: 1rem;
+}
+
+.formNewDiner button {
+  margin-top: 1rem;
+}
+
+.manageDiners form {
+  margin-top: 1.75em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+
+.manageDiners form .outerInputsWrapper .inputWrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5em;
+}
+.manageDiners form .outerInputsWrapper .inputWrapper:nth-of-type(2) {
+  margin-top: 0.25em;
+}
+.manageDiners form .outerInputsWrapper .inputWrapper input {
+  max-width: 8em;
+}
+
 .diners .dinersServings {
   display: inline-block;
   width: 50%;
@@ -16,11 +49,14 @@
 }
 
 .diners .dinersServings .chosenDinersList {
+  display: inline-block;
   list-style-type: none;
+  margin-block-start: 0.5em;
+  margin-block-end: 0.5em;
 }
 
 .diners .dinersServings .chosenDinersList li {
-  margin-top: 1em;
+  margin-bottom: 1em;
 }
 
 .diners .dinersServings .chosenDinersList span {

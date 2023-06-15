@@ -2,8 +2,8 @@ import axios from "axios";
 import Select from "react-select";
 import ReactModal from "react-modal";
 import { useState, useEffect } from "react";
-import ManageDinersModal from "./ManageDinersModal";
-import NewDinerModal from "./NewDinerModal";
+import ManageDinersModal from "./DinersModals/ManageDinersModal";
+import NewDinerModal from "./DinersModals/NewDinerModal";
 
 import "./Diners.css";
 
@@ -13,7 +13,7 @@ const Diners = (props) => {
     JSON.parse(localStorage.getItem("chosenDiners")) ? JSON.parse(localStorage.getItem("chosenDiners")) : []
   );
   const [totalCalories, setTotalCalories] = useState(0);
-  const [netWeight, setNetWeight] = useState(0);
+
   const [showModalManage, setShowModalManage] = useState(false);
   const [showModalNew, setShowModalNew] = useState(false);
 
@@ -38,9 +38,9 @@ const Diners = (props) => {
 
   useEffect(() => {
     if (!(Object.keys(props.chosenDish).length === 0 && props.chosenDish.constructor === Object)) {
-      setNetWeight(props.totalWeight - props.chosenDish.weight);
+      props.setNetWeight(props.totalWeight - props.chosenDish.weight);
     } else {
-      setNetWeight(props.totalWeight);
+      props.setNetWeight(props.totalWeight);
     }
   }, [props.totalWeight, props.chosenDish]);
 
@@ -62,8 +62,8 @@ const Diners = (props) => {
 
   return (
     <section className="diners">
+      <h2 className="sectionTitle">Choose diners</h2>
       <section className="chooseDiners">
-        <h2 className="sectionTitle">Choose diners</h2>
         <Select
           className="dinersSelection"
           isMulti
@@ -100,17 +100,17 @@ const Diners = (props) => {
             <button className="closeModal" onClick={handleCloseModalManage}>
               x
             </button>
-            <ManageDinersModal />
+            <ManageDinersModal diners={diners} />
           </ReactModal>
         </div>
       </section>
       <section className="dinersServings">
         <ul className="chosenDinersList">
           {chosenDiners.map((diner) => {
-            const servingSize = Math.round((diner.calories / totalCalories) * netWeight);
+            const servingSize = Math.round((diner.calories / totalCalories) * props.netWeight);
             return (
               <li key={"chosen" + diner.key}>
-                {diner.name} <span>{servingSize}</span>
+                {diner.name} <span>{servingSize >= 0 ? servingSize : "_"}</span>
               </li>
             );
           })}
