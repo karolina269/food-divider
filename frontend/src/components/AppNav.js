@@ -1,12 +1,34 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import "./AppNav.css";
+import { useState } from "react";
 
-const AppNav = () => {
+const AppNav = (props) => {
+  const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => {
-    console.log("toggleMenu");
+    setMenuOpen(!menuOpen);
   };
-  return <FontAwesomeIcon icon={faBars} className="menuBars" onClick={toggleMenu} />;
+  return (
+    <nav className="mainNav">
+      <FontAwesomeIcon icon={faBars} className="menuBars" onMouseOver={toggleMenu} />
+      {menuOpen && (
+        <ul className="mainNavList">
+          <li className="mainNavItem">
+            <a href="">Change the weight unit</a>
+          </li>
+          <li className="mainNavItem">
+            <a href="">Login</a>
+          </li>
+          <li className="mainNavItem">
+            <a href="">Logout</a>
+          </li>
+          <li className="mainNavItem">
+            <a href="">Contact</a>
+          </li>
+        </ul>
+      )}
+    </nav>
+  );
 };
 
 export default AppNav;

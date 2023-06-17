@@ -16,6 +16,7 @@ const Diners = (props) => {
 
   const [showModalManage, setShowModalManage] = useState(false);
   const [showModalNew, setShowModalNew] = useState(false);
+  const gToOz = 0.0352739619;
 
   const getDiners = () => {
     axios.get("http://localhost:3005/diners/all").then((res) => {
@@ -72,7 +73,7 @@ const Diners = (props) => {
             value: diner.name,
             name: diner.name,
             calories: diner.calories,
-            key: "chosen" + diner._id,
+            key: diner.key,
           }))}
           options={diners.map((diner) => ({
             label: diner.name + " - " + diner.calories + " kcal",
@@ -107,10 +108,14 @@ const Diners = (props) => {
       <section className="dinersServings">
         <ul className="chosenDinersList">
           {chosenDiners.map((diner) => {
-            const servingSize = Math.round((diner.calories / totalCalories) * props.netWeight);
+            const servingSize =
+              props.unit === "g"
+                ? Math.round((diner.calories / totalCalories) * props.netWeight)
+                : Math.round((diner.calories / totalCalories) * props.netWeight * gToOz);
             return (
               <li key={"chosen" + diner.key}>
                 {diner.name} <span>{servingSize >= 0 ? servingSize : "_"}</span>
+                {props.unit}
               </li>
             );
           })}

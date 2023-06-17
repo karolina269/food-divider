@@ -52,4 +52,5 @@
   border: 2px solid var(--dark);
   border-radius: 0.25em;
   padding: 0.25em;
+  margin-right: 0.25em;
 }

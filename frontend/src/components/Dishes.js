@@ -68,7 +68,7 @@ const Dishes = (props) => {
       <Select
         className="dishesSelection"
         options={dishes.map((dish) => ({
-          label: dish.name + " - " + dish.weight,
+          label: dish.name + " - " + dish.weight + " " + props.unit,
           value: dish.name,
           name: dish.name,
           weight: dish.weight,
