@@ -8,19 +8,6 @@
   justify-content: space-between;
 }
 
-.formNewDiner {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  gap: 1rem;
-}
-
-.formNewDiner button {
-  margin-top: 1rem;
-}
-
 .manageDiners form {
   margin-top: 1.75em;
   display: flex;

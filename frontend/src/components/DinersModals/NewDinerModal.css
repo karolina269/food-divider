@@ -1,0 +1,18 @@
+.formNewDiner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  gap: 1rem;
+}
+
+.formNewDiner .error {
+  color: red;
+  font-size: 0.75em;
+}
+
+.formNewDiner button {
+  margin-top: 1rem;
+}

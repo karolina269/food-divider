@@ -3,23 +3,6 @@
   width: 50%;
 }
 
-.formDish {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  gap: 1rem;
-}
-
-.formDish span {
-  font-weight: 600;
-}
-
-.formDish button {
-  margin-top: 1rem;
-}
-
 .selectDish {
   padding: 0.5em;
 }
