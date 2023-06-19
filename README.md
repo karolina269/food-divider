@@ -28,8 +28,6 @@ in progress
 
 ## To Do
 
-- readme: add screenshots
-- backend: weight units
 - frontend: weight units, ManageDinersModal - multiple forms, navigation, tooltips, ux refinement, rwd
 - frontend-mobile
 - auth0 ?
