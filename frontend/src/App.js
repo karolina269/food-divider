@@ -7,14 +7,13 @@ import "./App.css";
 
 const App = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
-  const [unit, setUnit] = useState("g");
 
   axios.defaults.headers.common["Authorization"] = user ? user.jwt : "";
 
   return (
     <div className="App">
-      <Header setUnit={setUnit} unit={unit} setUser={setUser} user={user} />
-      <AppRoutes user={user} setUser={setUser} unit={unit} />
+      <Header setUser={setUser} user={user} />
+      <AppRoutes user={user} setUser={setUser} />
     </div>
   );
 };

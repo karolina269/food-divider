@@ -5,6 +5,7 @@ import Select from "react-select";
 import NewDishModal from "./DishesModals/NewDishModal";
 import EditDishModal from "./DishesModals/EditDishModal";
 import DeleteDishModal from "./DishesModals/DeleteDishModal";
+import { gToOz } from "../views/Home";
 
 import "./Dishes.css";
 
@@ -28,7 +29,6 @@ const Dishes = (props) => {
   }, []);
 
   const chooseDish = (e) => {
-    console.log(e);
     props.setChosenDish(e);
   };
 
@@ -68,7 +68,12 @@ const Dishes = (props) => {
       <Select
         className="dishesSelection"
         options={dishes.map((dish) => ({
-          label: dish.name + " - " + dish.weight + " " + props.unit,
+          label:
+            dish.name +
+            " - " +
+            (props.unit === "g" ? Math.round(dish.weight * 100) / 100 : Math.round(dish.weight * gToOz * 100) / 100) +
+            " " +
+            props.unit,
           value: dish.name,
           name: dish.name,
           weight: dish.weight,
@@ -96,7 +101,7 @@ const Dishes = (props) => {
         <button className="closeModal" onClick={handleCloseModalEdit}>
           x
         </button>
-        <EditDishModal getDishes={getDishes} dishes={dishes} chosenDish={props.chosenDish} />
+        <EditDishModal getDishes={getDishes} dishes={dishes} chosenDish={props.chosenDish} unit={props.unit} />
       </ReactModal>
 
       <button className="btn new dish" onClick={handleOpenModalNew}>
@@ -106,7 +111,7 @@ const Dishes = (props) => {
         <button className="closeModal" onClick={handleCloseModalNew}>
           x
         </button>
-        <NewDishModal setDishes={setDishes} dishes={dishes} handleCloseModalNew={handleCloseModalNew} />
+        <NewDishModal setDishes={setDishes} dishes={dishes} handleCloseModalNew={handleCloseModalNew} unit={props.unit} />
       </ReactModal>
     </section>
   );

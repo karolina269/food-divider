@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { ozToG } from "../../views/Home";
 
 import "./DishModal.css";
 
@@ -67,9 +68,15 @@ const NewDishModal = (props) => {
     if (!validate()) {
       return;
     } else {
-      axios.post("http://localhost:3005/dishes/add", formData).then((res) => {
-        props.setDishes(props.dishes.concat(res.data));
-      });
+      if (props.unit === "g") {
+        axios.post("http://localhost:3005/dishes/add", formData).then((res) => {
+          props.setDishes(props.dishes.concat(res.data));
+        });
+      } else {
+        axios.post("http://localhost:3005/dishes/add", { ...formData, weight: formData.weight * ozToG }).then((res) => {
+          props.setDishes(props.dishes.concat(res.data));
+        });
+      }
     }
     props.handleCloseModalNew();
   };
@@ -82,7 +89,7 @@ const NewDishModal = (props) => {
         {errors.name && <p className="error">{errors.name}</p>}
       </div>
 
-      <label htmlFor="weight">Weight:</label>
+      <label htmlFor="weight">Weight ({props.unit}):</label>
       <div className="inputWrapper">
         <input type="number" name="weight" placeholder="weight" value={formData.weight} onChange={handleInputChange} />
         {errors.weight && <p className="error">{errors.weight}</p>}

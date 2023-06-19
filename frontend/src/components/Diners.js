@@ -43,7 +43,7 @@ const Diners = (props) => {
     } else {
       props.setNetWeight(props.totalWeight);
     }
-  }, [props.totalWeight, props.chosenDish]);
+  }, [props]);
 
   const handleOpenModalManage = () => {
     setShowModalManage(true);

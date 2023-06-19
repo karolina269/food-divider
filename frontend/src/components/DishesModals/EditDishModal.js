@@ -1,18 +1,28 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
+import { gToOz } from "../../views/Home";
 
 import "./DishModal.css";
 
 const EditDishModal = (props) => {
-  const [formData, setFormData] = useState({
-    name: props.chosenDish.name,
-    weight: props.chosenDish.weight,
-  });
+  const [formData, setFormData] = useState({});
 
   const [errors, setErrors] = useState({
     name: "",
     weight: "",
   });
+
+  useEffect(() => {
+    props.unit === "g"
+      ? setFormData({
+          name: props.chosenDish.name,
+          weight: props.chosenDish.weight,
+        })
+      : setFormData({
+          name: props.chosenDish.name,
+          weight: Math.round(props.chosenDish.weight * gToOz * 100) / 100,
+        });
+  }, [props.unit]);
 
   const handleInputChange = (e) => {
     const target = e.target;
@@ -67,6 +77,9 @@ const EditDishModal = (props) => {
     if (!validate()) {
       return;
     } else {
+      if (props.unit === "oz") {
+        setFormData({ ...formData, weight: formData.weight * gToOz });
+      }
       axios.post("http://localhost:3005/dishes/edit/" + props.chosenDish.key, formData).then(() => {
         props.getDishes();
       });
@@ -82,7 +95,7 @@ const EditDishModal = (props) => {
         {errors.name && <p className="error">{errors.name}</p>}
       </div>
 
-      <label htmlFor="weight">Weight:</label>
+      <label htmlFor="weight">Weight ({props.unit}):</label>
       <div className="inputWrapper">
         <input type="number" name="weight" placeholder="dish weight" value={formData.weight} onChange={handleInputChange} />
         {errors.weight && <p className="error">{errors.weight}</p>}

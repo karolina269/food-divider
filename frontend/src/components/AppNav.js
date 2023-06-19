@@ -1,22 +1,18 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faXmark, faAngleDown } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { CSSTransition } from "react-transition-group";
 import "./AppNav.css";
 
 const AppNav = (props) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [icon, setIcon] = useState(faBars);
-  const [unitsOpen, setUnitsOpen] = useState(false);
-
-  const toggleUnits = () => {
-    setUnitsOpen(!unitsOpen);
-  };
+  const nodeRef = useRef(null);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
-    icon === faBars ? setIcon(faXmark) : setIcon(faBars);
   };
 
   const handleDelete = (e) => {
@@ -43,25 +39,15 @@ const AppNav = (props) => {
   return (
     <nav className="mainNav">
       <FontAwesomeIcon icon={icon} className="menuBars" onClick={toggleMenu} />
-      {menuOpen && (
-        <ul className="mainNavList">
-          {props.user && (
-            <li className="mainNavItem">
-              <button onClick={toggleUnits}>
-                Weight unit <FontAwesomeIcon icon={faAngleDown} className="units" />
-              </button>
-              {unitsOpen && (
-                <ul className="unitsList">
-                  <li>
-                    <button onClick={props.setUnit("g")}>Grams</button>
-                  </li>
-                  <li>
-                    <button onClick={props.setUnit("oz")}>Ounces</button>
-                  </li>
-                </ul>
-              )}
-            </li>
-          )}
+      <CSSTransition
+        in={menuOpen}
+        nodeRef={nodeRef}
+        timeout={300}
+        classNames="mainNavList"
+        unmountOnExit
+        onEnter={() => setIcon(faXmark)}
+        onExit={() => setIcon(faBars)}>
+        <ul ref={nodeRef} className="mainNavList">
           {props.user && (
             <li className="mainNavItem">
               <Link to="/" onClick={handleLogout}>
@@ -80,7 +66,7 @@ const AppNav = (props) => {
             <a href="mailto:karolinastec269@gmail.com">Contact</a>
           </li>
         </ul>
-      )}
+      </CSSTransition>
     </nav>
   );
 };

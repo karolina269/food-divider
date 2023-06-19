@@ -17,16 +17,29 @@
   position: absolute;
   right: 0;
   z-index: 100;
-  width: 40%;
   text-align: center;
   background-color: var(--accent);
   border-radius: 25px;
-  transition: all 0.5s ease-in-out;
+  overflow: hidden;
+  max-height: 0;
+  width: 0;
+}
+
+.mainNav .mainNavList-enter {
+  max-height: 0;
+  width: 0;
+}
+
+.mainNav .mainNavList-enter-done {
+  max-height: 500px;
+  width: auto;
+  transition: all 1s;
 }
 
 .mainNav .mainNavList .mainNavItem {
   margin: auto;
   margin-top: 1em;
+  padding: 0 1em;
 }
 
 .mainNav .mainNavList .mainNavItem:last-child {
