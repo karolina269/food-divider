@@ -22,6 +22,12 @@ frontend-mobile
 
 - React Native
 
+## Screenshots
+
+![example](https://github.com/karolina269/food-divider/blob/master/screenshots/example.png?raw=true)
+![modal](https://github.com/karolina269/food-divider/blob/master/screenshots/newdish.png?raw=true)
+![navigation](https://github.com/karolina269/food-divider/blob/master/screenshots/nav.png?raw=true)
+
 ## Project Status
 
 in progress
