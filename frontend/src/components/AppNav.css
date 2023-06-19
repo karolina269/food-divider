@@ -13,7 +13,7 @@
 
 .mainNav .mainNavList {
   list-style: none;
-  padding-inline-start: 0;
+  padding: 0;
   position: absolute;
   right: 0;
   z-index: 100;
@@ -21,6 +21,7 @@
   text-align: center;
   background-color: var(--accent);
   border-radius: 25px;
+  transition: all 0.5s ease-in-out;
 }
 
 .mainNav .mainNavList .mainNavItem {
@@ -28,7 +29,7 @@
   margin-top: 1em;
 }
 
-.mainNav .mainNavList .mainNavItem:last-of-type {
+.mainNav .mainNavList .mainNavItem:last-child {
   margin-bottom: 1em;
 }
 
@@ -38,6 +39,24 @@
   font-weight: 500;
 }
 
-.mainNav .mainNavList .mainNavItem a:hover {
+.mainNav .mainNavList .mainNavItem a:hover,
+.mainNav .mainNavList .mainNavItem button:hover {
+  font-weight: 900;
+}
+
+.mainNav .mainNavList .mainNavItem button {
+  background-color: var(--accent);
+  font-size: 1em;
+  font-weight: 500;
+  border: none;
+  margin-bottom: 0;
+}
+
+.mainNav .mainNavList .mainNavItem .unitsList {
+  list-style: none;
+  padding: 0;
+}
+
+.mainNav .mainNavList .mainNavItem ul.unitsList li:hover {
   font-weight: 900;
 }

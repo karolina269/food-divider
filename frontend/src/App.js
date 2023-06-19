@@ -13,7 +13,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Header setUnit={setUnit} unit={unit} />
+      <Header setUnit={setUnit} unit={unit} setUser={setUser} user={user} />
       <AppRoutes user={user} setUser={setUser} unit={unit} />
     </div>
   );
