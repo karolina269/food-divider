@@ -8,10 +8,15 @@
 .sectionTitle {
   font-size: 1.5rem;
   font-weight: 500;
+  margin: 0;
+}
+
+h2.sectionTitle {
+  margin-bottom: 0.5rem;
 }
 
 hr {
-  margin-top: 2em;
+  margin: 1em 0;
 }
 
 button {
@@ -41,10 +46,16 @@ button:hover:disabled {
   border-color: var(--accent);
 }
 
-.btn.new,
-.btn.manage {
+.btn.manage,
+.btn.edit {
   padding: 0.5em;
-  margin-top: 1em;
+  margin-left: 0.5em;
+}
+
+.btn.new {
+  display: block;
+  padding: 0.5em;
+  margin-top: 0.5em;
 }
 
 .btn.new span {
@@ -56,11 +67,6 @@ button:hover:disabled {
   color: var(--dark);
   font-weight: 600;
   border-radius: 50%;
-}
-
-.btn.edit {
-  padding: 0.5em;
-  margin-left: 0.5em;
 }
 
 .btn.delete {
@@ -81,43 +87,4 @@ button:hover:disabled {
 
 .closeModal {
   float: right;
-}
-
-.weight {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.weight .totalWeightWrapper {
-  text-align: right;
-}
-
-.weight .totalWeightWrapper .netWeightError {
-  color: red;
-  font-size: 0.75em;
-  text-align: right;
-  margin-bottom: 0;
-}
-
-.weight .totalWeightWrapper input.totalWeight {
-  padding: 0.2em;
-  margin-right: 0.25em;
-  max-width: 5em;
-  font-weight: 600;
-  font-size: 1.1em;
-  text-align: center;
-  border-radius: 2px;
-  border: 2px solid var(--dark);
-  outline: -webkit-focus-ring-color auto 1px;
-}
-
-.weight .totalWeightWrapper select.unit {
-  display: inline-block;
-  padding: 0.2em;
-  font-size: 1.05em;
-  font-weight: 600;
-  border-radius: 2px;
-  border: 2px solid var(--dark);
-  outline: -webkit-focus-ring-color auto 1px;
 }

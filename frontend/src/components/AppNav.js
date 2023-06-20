@@ -42,7 +42,7 @@ const AppNav = (props) => {
       <CSSTransition
         in={menuOpen}
         nodeRef={nodeRef}
-        timeout={300}
+        timeout={0}
         classNames="mainNavList"
         unmountOnExit
         onEnter={() => setIcon(faXmark)}

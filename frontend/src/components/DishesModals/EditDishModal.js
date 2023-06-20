@@ -22,7 +22,7 @@ const EditDishModal = (props) => {
           name: props.chosenDish.name,
           weight: Math.round(props.chosenDish.weight * gToOz * 100) / 100,
         });
-  }, [props.unit]);
+  }, [props]);
 
   const handleInputChange = (e) => {
     const target = e.target;

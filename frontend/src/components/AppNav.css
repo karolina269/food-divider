@@ -33,7 +33,7 @@
 .mainNav .mainNavList-enter-done {
   max-height: 500px;
   width: auto;
-  transition: all 1s;
+  transition: all 0.5s;
 }
 
 .mainNav .mainNavList .mainNavItem {

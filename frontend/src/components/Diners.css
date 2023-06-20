@@ -1,11 +1,6 @@
-.diners .chooseDiners {
+.diners .chooseDiners .dinersSelection {
   display: inline-block;
   width: 50%;
-}
-
-.diners .chooseDiners .dinersButtonsWrapper {
-  display: flex;
-  justify-content: space-between;
 }
 
 .manageDiners form {
@@ -26,31 +21,4 @@
 }
 .manageDiners form .outerInputsWrapper .inputWrapper input {
   max-width: 8em;
-}
-
-.diners .dinersServings {
-  display: inline-block;
-  width: 50%;
-  float: right;
-  text-align: right;
-}
-
-.diners .dinersServings .chosenDinersList {
-  display: inline-block;
-  list-style-type: none;
-  margin-block-start: 0.5em;
-  margin-block-end: 0.5em;
-}
-
-.diners .dinersServings .chosenDinersList li {
-  margin-bottom: 1em;
-}
-
-.diners .dinersServings .chosenDinersList span {
-  background-color: var(--accent);
-  font-weight: 500;
-  border: 2px solid var(--dark);
-  border-radius: 0.25em;
-  padding: 0.25em;
-  margin-right: 0.25em;
 }
