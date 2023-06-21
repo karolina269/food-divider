@@ -62,25 +62,24 @@ const Dishes = (props) => {
     }
   }, [props.chosenDish]);
 
-  console.log(props.unit);
-
   return (
     <section className="dishes">
       <h2 className="sectionTitle">Choose the dish</h2>
       <Select
         className="dishesSelection"
         options={dishes.map((dish) => ({
-          label:
-            dish.name +
-            " - " +
-            (props.unit === "g" ? Math.round(dish.weight * 100) / 100 : Math.round(dish.weight * gToOz * 100) / 100) +
-            " " +
-            props.unit,
           value: dish.name,
           name: dish.name,
           weight: dish.weight,
           key: dish._id,
         }))}
+        getOptionLabel={(option) =>
+          option.name +
+          " - " +
+          (props.unit === "g" ? Math.round(option.weight * 100) / 100 : Math.round(option.weight * gToOz * 100) / 100) +
+          " " +
+          props.unit
+        }
         onChange={chooseDish}
       />
 

@@ -17,11 +17,13 @@ const ManageDinerForm = (props) => {
     });
   };
   const editAndSaveDiner = (e) => {
+    console.log("editAndSaveDiner");
     e.preventDefault();
     axios
       .post("http://localhost:3005/diners/edit/" + props.diner._id, formData)
       .then(() => {
         //zedytowac we froncie
+        console.log("saved");
       })
       .catch((error) => console.error(error));
   };
@@ -47,7 +49,7 @@ const ManageDinerForm = (props) => {
       <button type="submit" className="btn">
         Save
       </button>
-      <button type="button" className="btn" onClick={deleteDiner}>
+      <button type="button" className="btn delete" onClick={deleteDiner}>
         Delete
       </button>
     </form>

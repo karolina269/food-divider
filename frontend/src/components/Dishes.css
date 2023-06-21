@@ -1,8 +1,16 @@
-.dishesSelection {
+.dishes .dishesSelection {
   display: inline-block;
   width: 50%;
 }
 
-.selectDish {
+.dishes .selectDish {
   padding: 0.5em;
+}
+
+.dishes .btn.delete {
+  margin-left: 0.5em;
+}
+
+.dishes .btn.delete:disabled {
+  color: var(--dark);
 }

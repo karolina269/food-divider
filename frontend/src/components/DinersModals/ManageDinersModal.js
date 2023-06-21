@@ -1,4 +1,5 @@
 import ManageDinerForm from "./ManageDinerForm";
+import "./ManageDinersModal.css";
 
 const ManageDinersModal = (props) => {
   return (

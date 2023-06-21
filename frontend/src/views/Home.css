@@ -35,7 +35,7 @@ button:hover:disabled {
 .btn {
   background-color: var(--dark);
   color: #ffffff;
-  padding: 1em;
+  padding: 0.5em;
   border-width: 1px;
   border-radius: 0.75em;
 }
@@ -71,7 +71,11 @@ button:hover:disabled {
 
 .btn.delete {
   padding: 0.5em;
-  margin-left: 0.5em;
+  color: #ff6347;
+}
+
+.btn.delete:hover {
+  color: var(--dark);
 }
 
 .modal {
