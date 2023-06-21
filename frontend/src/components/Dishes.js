@@ -62,6 +62,8 @@ const Dishes = (props) => {
     }
   }, [props.chosenDish]);
 
+  console.log(props.unit);
+
   return (
     <section className="dishes">
       <h2 className="sectionTitle">Choose the dish</h2>

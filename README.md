@@ -34,6 +34,6 @@ in progress
 
 ## To Do
 
-- frontend: weight units, ManageDinersModal - multiple forms, navigation, tooltips, ux refinement, rwd
+- frontend: tooltips, ux refinement, rwd
 - frontend-mobile
 - auth0 ?

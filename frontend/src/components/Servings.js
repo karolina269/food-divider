@@ -33,8 +33,7 @@ const Servings = (props) => {
         }
         return (
           <div className="diner" key={"chosen" + diner.key}>
-            {diner.name}: {servingSize >= 0 ? servingSize : "_"}
-            {props.unit}
+            {diner.name}: {servingSize >= 0 ? servingSize : "_"} {props.unit}
           </div>
         );
       })}

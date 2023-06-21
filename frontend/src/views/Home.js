@@ -29,7 +29,7 @@ const Home = (props) => {
         chosenDiners={chosenDiners}
       />
       <hr></hr>
-      <TotalWeight totalWeight={totalWeight} setTotalWeight={setTotalWeight} unit={unit} setUnit={setUnit} />
+      <TotalWeight totalWeight={totalWeight} setTotalWeight={setTotalWeight} netWeight={netWeight} unit={unit} setUnit={setUnit} />
       <hr></hr>
       <Diners chosenDish={chosenDish} setChosenDiners={setChosenDiners} chosenDiners={chosenDiners} />
       <hr></hr>

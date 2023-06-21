@@ -20,7 +20,12 @@ const TotalWeight = (props) => {
       <label htmlFor="totalWeight" className="sectionTitle">
         Total weight
       </label>
-      <div className="totalWeightWrapper">
+      {props.netWeight < 0 && (
+        <p className="netWeightError" title="Change the dish or enter a higher total weight">
+          Net weight is below 0
+        </p>
+      )}
+      <div className="valueWrapper">
         <input
           className="totalWeight"
           type="number"
@@ -34,11 +39,6 @@ const TotalWeight = (props) => {
           <option value="g">g</option>
           <option value="oz">oz</option>
         </select>
-        {props.netWeight < 0 && (
-          <p className="netWeightError" title="Change the dish or enter a higher total weight">
-            Net weight is below 0
-          </p>
-        )}
       </div>
     </section>
   );

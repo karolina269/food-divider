@@ -66,14 +66,14 @@ const Diners = (props) => {
           }))}
           onChange={chooseDiners}
         />
-        <button className="btn manage" onClick={handleOpenModalManage} disabled>
+        <button className="btn manage" onClick={handleOpenModalManage}>
           Manage diners
         </button>
         <ReactModal className="modal" isOpen={showModalManage} contentLabel="manage diners form">
           <button className="closeModal" onClick={handleCloseModalManage}>
             x
           </button>
-          <ManageDinersModal diners={diners} />
+          <ManageDinersModal diners={diners} setDiners={setDiners} />
         </ReactModal>
         <button className="btn new" onClick={handleOpenModalNew}>
           New diner <span>+</span>

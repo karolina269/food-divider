@@ -4,20 +4,22 @@
   width: 100%;
 }
 
-.totalWeightSection .totalWeightWrapper {
-  text-align: right;
-}
-
-.totalWeightSection .totalWeightWrapper .netWeightError {
+.totalWeightSection .netWeightError {
   color: red;
   font-size: 0.75em;
-  text-align: right;
   margin-bottom: 0;
 }
 
-.totalWeightSection .totalWeightWrapper input.totalWeight {
+.totalWeightSection .valueWrapper {
+  height: 2.25em;
+  display: flex;
+  align-items: center;
+}
+
+.totalWeightSection .valueWrapper input.totalWeight {
   padding: 0.2em;
   margin-right: 0.25em;
+  height: 100%;
   max-width: 5em;
   font-weight: 600;
   font-size: 1.1em;
@@ -27,9 +29,10 @@
   outline: -webkit-focus-ring-color auto 1px;
 }
 
-.totalWeightSection .totalWeightWrapper select.unit {
+.totalWeightSection .valueWrapper select.unit {
   display: inline-block;
-  padding: 0.2em;
+  text-align: center;
+  height: 100%;
   font-size: 1.05em;
   font-weight: 600;
   border-radius: 2px;
