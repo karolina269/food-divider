@@ -11,6 +11,29 @@ const Diners = (props) => {
   const [diners, setDiners] = useState([]);
   const [showModalManage, setShowModalManage] = useState(false);
   const [showModalNew, setShowModalNew] = useState(false);
+  const [options, setOptions] = useState([]);
+  const [value, setValue] = useState([]);
+
+  useEffect(() => {
+    setOptions(
+      diners.map((diner) => ({
+        label: diner.name + " - " + diner.calories + " kcal",
+        value: diner.name,
+        name: diner.name,
+        calories: diner.calories,
+        key: diner._id,
+      }))
+    );
+    setValue(
+      props.chosenDiners.map((diner) => ({
+        label: diner.name + " - " + diner.calories + " kcal",
+        value: diner.name,
+        name: diner.name,
+        calories: diner.calories,
+        key: diner.key,
+      }))
+    );
+  }, [diners, props.chosenDiners]);
 
   const getDiners = () => {
     axios.get("http://localhost:3005/diners/all").then((res) => {
@@ -49,21 +72,11 @@ const Diners = (props) => {
       <section className="chooseDiners">
         <Select
           className="dinersSelection"
+          filterOption={() => true}
           isMulti
-          value={props.chosenDiners.map((diner) => ({
-            label: diner.name + " - " + diner.calories + " kcal",
-            value: diner.name,
-            name: diner.name,
-            calories: diner.calories,
-            key: diner.key,
-          }))}
-          options={diners.map((diner) => ({
-            label: diner.name + " - " + diner.calories + " kcal",
-            value: diner.name,
-            name: diner.name,
-            calories: diner.calories,
-            key: diner._id,
-          }))}
+          value={value}
+          options={options}
+          cacheOptions={false}
           onChange={chooseDiners}
         />
         <button className="btn manage" onClick={handleOpenModalManage}>
@@ -73,7 +86,7 @@ const Diners = (props) => {
           <button className="closeModal" onClick={handleCloseModalManage}>
             x
           </button>
-          <ManageDinersModal diners={diners} setDiners={setDiners} />
+          <ManageDinersModal diners={diners} setDiners={setDiners} getDiners={getDiners} />
         </ReactModal>
         <button className="btn new" onClick={handleOpenModalNew}>
           New diner <span>+</span>

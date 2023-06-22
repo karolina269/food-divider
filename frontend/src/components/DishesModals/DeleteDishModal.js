@@ -7,6 +7,7 @@ const DeleteDishModal = (props) => {
       props.getDishes();
     });
     props.handleCloseModalDelete();
+    props.setValue(null);
   };
 
   return (

@@ -71,10 +71,12 @@ const NewDishModal = (props) => {
       if (props.unit === "g") {
         axios.post("http://localhost:3005/dishes/add", formData).then((res) => {
           props.setDishes(props.dishes.concat(res.data));
+          props.setValue(res.data);
         });
       } else {
         axios.post("http://localhost:3005/dishes/add", { ...formData, weight: formData.weight * ozToG }).then((res) => {
           props.setDishes(props.dishes.concat(res.data));
+          props.setValue(res.data);
         });
       }
     }

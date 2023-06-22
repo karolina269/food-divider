@@ -24,7 +24,7 @@ module.exports = {
   update: (req, res) => {
     Diner.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
-        res.status(204);
+        res.status(200).json({ message: "Diner has been updated" });
       })
       .catch((err) => {
         res.status(500).json({ error: err });

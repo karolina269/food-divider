@@ -17,6 +17,7 @@ const Dishes = (props) => {
   const [showModalEdit, setShowModalEdit] = useState(false);
   const [showModalDelete, setShowModalDelete] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
+  const [value, setValue] = useState(null);
 
   const getDishes = () => {
     axios.get("http://localhost:3005/dishes/all").then((res) => {
@@ -81,30 +82,27 @@ const Dishes = (props) => {
           props.unit
         }
         onChange={chooseDish}
+        value={value}
       />
 
       <button className="btn edit" onClick={handleOpenModalEdit} disabled={isDisabled}>
         Edit
       </button>
-
       <button className="btn delete" onClick={handleOpenModalDelete} disabled={isDisabled}>
         Delete
       </button>
-
       <ReactModal className="modal" isOpen={showModalDelete} contentLabel="Delete dish">
         <button className="closeModal" onClick={handleCloseModalDelete}>
           x
         </button>
-        <DeleteDishModal getDishes={getDishes} chosenDish={props.chosenDish} handleCloseModalDelete={handleCloseModalDelete} />
+        <DeleteDishModal getDishes={getDishes} chosenDish={props.chosenDish} handleCloseModalDelete={handleCloseModalDelete} setValue={setValue} />
       </ReactModal>
-
       <ReactModal className="modal" isOpen={showModalEdit} contentLabel="edit dish form">
         <button className="closeModal" onClick={handleCloseModalEdit}>
           x
         </button>
         <EditDishModal getDishes={getDishes} dishes={dishes} chosenDish={props.chosenDish} unit={props.unit} />
       </ReactModal>
-
       <button className="btn new dish" onClick={handleOpenModalNew}>
         New dish <span>+</span>
       </button>
@@ -112,7 +110,7 @@ const Dishes = (props) => {
         <button className="closeModal" onClick={handleCloseModalNew}>
           x
         </button>
-        <NewDishModal setDishes={setDishes} dishes={dishes} handleCloseModalNew={handleCloseModalNew} unit={props.unit} />
+        <NewDishModal setDishes={setDishes} dishes={dishes} handleCloseModalNew={handleCloseModalNew} unit={props.unit} setValue={setValue} />
       </ReactModal>
     </section>
   );
