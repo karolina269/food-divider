@@ -37,7 +37,7 @@ module.exports = {
         User.updateOne({ _id: diner.user._id }, { $pull: { diners: req.params.id } }).catch((err) => {
           res.status(500).json({ error: err });
         });
-        res.status(204);
+        res.status(200).json({ message: "Diner has been deleted" });
       })
       .catch((err) => {
         res.status(500).json({ error: err });

@@ -47,7 +47,7 @@ const AppNav = (props) => {
         unmountOnExit
         onEnter={() => setIcon(faXmark)}
         onExit={() => setIcon(faBars)}>
-        <ul ref={nodeRef} className="mainNavList">
+        <ul ref={nodeRef} className="mainNavList" onMouseLeave={() => setMenuOpen(false)}>
           {props.user && (
             <li className="mainNavItem">
               <Link to="/" onClick={handleLogout}>

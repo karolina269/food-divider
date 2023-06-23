@@ -3,11 +3,12 @@ import axios from "axios";
 const DeleteDishModal = (props) => {
   const deleteDish = () => {
     console.log("kasuje");
-    axios.delete("http://localhost:3005/dishes/delete/" + props.chosenDish.key).then(() => {
+    axios.delete("http://localhost:3005/dishes/delete/" + props.chosenDish.key).then((res) => {
       props.getDishes();
+      console.log(res.data.message);
     });
+    props.setValue("");
     props.handleCloseModalDelete();
-    props.setValue(null);
   };
 
   return (

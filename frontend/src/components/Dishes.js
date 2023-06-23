@@ -17,7 +17,7 @@ const Dishes = (props) => {
   const [showModalEdit, setShowModalEdit] = useState(false);
   const [showModalDelete, setShowModalDelete] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
-  const [value, setValue] = useState(null);
+  const [value, setValue] = useState("");
 
   const getDishes = () => {
     axios.get("http://localhost:3005/dishes/all").then((res) => {
@@ -30,7 +30,12 @@ const Dishes = (props) => {
   }, []);
 
   const chooseDish = (e) => {
-    props.setChosenDish(e);
+    //próbuje zrobić tak, żeby przy clear nie wyskakiwał błąd, ale nie udaje się
+    if (!(Object.keys(e).length === 0 && e.constructor === Object)) {
+      props.setChosenDish(e);
+    } else {
+      props.setChosenDish({});
+    }
   };
 
   const handleOpenModalNew = () => {
@@ -82,7 +87,9 @@ const Dishes = (props) => {
           props.unit
         }
         onChange={chooseDish}
-        value={value}
+        //ta linijka chyba nic nie zmienia:
+        // defaultValue={value}
+        isClearable={true}
       />
 
       <button className="btn edit" onClick={handleOpenModalEdit} disabled={isDisabled}>
@@ -101,7 +108,7 @@ const Dishes = (props) => {
         <button className="closeModal" onClick={handleCloseModalEdit}>
           x
         </button>
-        <EditDishModal getDishes={getDishes} dishes={dishes} chosenDish={props.chosenDish} unit={props.unit} />
+        <EditDishModal getDishes={getDishes} dishes={dishes} chosenDish={props.chosenDish} unit={props.unit} handleCloseModalEdit={handleCloseModalEdit} />
       </ReactModal>
       <button className="btn new dish" onClick={handleOpenModalNew}>
         New dish <span>+</span>

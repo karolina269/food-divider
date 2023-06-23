@@ -19,12 +19,12 @@ module.exports = {
     User.updateOne({ _id: req.userId }, { $push: { dishes: newDish._id } }).catch((err) => {
       res.status(500).json({ error: err });
     });
-    res.status(201).json(newDish);
+    res.status(201).json({ newDish, message: "Dish has been added" });
   },
   update: (req, res) => {
     Dish.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
-        res.status(204);
+        res.status(200).json({ message: "Dish has been updated" });
       })
       .catch((err) => {
         res.status(500).json({ error: err });
@@ -37,7 +37,7 @@ module.exports = {
         User.updateOne({ _id: dish.user._id }, { $pull: { dishes: req.params.id } }).catch((err) => {
           res.status(500).json({ error: err });
         });
-        res.status(204);
+        res.status(200).json({ message: "Dish has been deleted" });
       })
       .catch((err) => {
         res.status(500).json({ error: err });

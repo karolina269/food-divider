@@ -79,6 +79,7 @@ const Diners = (props) => {
           cacheOptions={false}
           onChange={chooseDiners}
         />
+
         <button className="btn manage" onClick={handleOpenModalManage}>
           Manage diners
         </button>
@@ -86,7 +87,15 @@ const Diners = (props) => {
           <button className="closeModal" onClick={handleCloseModalManage}>
             x
           </button>
-          <ManageDinersModal diners={diners} setDiners={setDiners} getDiners={getDiners} />
+          <ManageDinersModal
+            diners={diners}
+            setDiners={setDiners}
+            getDiners={getDiners}
+            value={value}
+            setValue={setValue}
+            options={options}
+            setOptions={setOptions}
+          />
         </ReactModal>
         <button className="btn new" onClick={handleOpenModalNew}>
           New diner <span>+</span>

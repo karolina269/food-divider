@@ -64,7 +64,16 @@ const ManageDinerForm = (props) => {
           <button className="closeModal" onClick={handleCloseModalConfirm}>
             x
           </button>
-          <ConfirmDelete setDiners={props.setDiners} diner={props.diner} diners={props.diners} handleCloseModalConfirm={handleCloseModalConfirm} />
+          <ConfirmDelete
+            setDiners={props.setDiners}
+            diner={props.diner}
+            diners={props.diners}
+            handleCloseModalConfirm={handleCloseModalConfirm}
+            value={props.value}
+            setValue={props.setValue}
+            options={props.options}
+            setOptions={props.setOptions}
+          />
         </ReactModal>
         <p className="message">{message}</p>
       </form>
