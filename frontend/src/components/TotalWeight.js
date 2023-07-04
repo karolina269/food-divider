@@ -11,10 +11,6 @@ const TotalWeight = (props) => {
     }
   };
 
-  const handleWeightChange = (e) => {
-    props.setTotalWeight(e.target.value);
-  };
-
   return (
     <section className="totalWeightSection">
       <label htmlFor="totalWeight" className="sectionTitle">
@@ -32,7 +28,7 @@ const TotalWeight = (props) => {
           id="totalWeight"
           name="totalWeight"
           value={props.totalWeight}
-          onChange={handleWeightChange}
+          onChange={(e) => props.setTotalWeight(e.target.value)}
           onFocus={(e) => e.target.select()}
         />
         <select className="unit" onChange={selectUnit}>

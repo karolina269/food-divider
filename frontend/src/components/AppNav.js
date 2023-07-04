@@ -11,10 +11,6 @@ const AppNav = (props) => {
   const [icon, setIcon] = useState(faBars);
   const nodeRef = useRef(null);
 
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
-
   const handleDelete = (e) => {
     e.preventDefault();
     axios
@@ -40,7 +36,7 @@ const AppNav = (props) => {
     <header>
       <h1>Food Divider</h1>
       <nav className="mainNav">
-        <FontAwesomeIcon icon={icon} className="menuBars" onClick={toggleMenu} />
+        <FontAwesomeIcon icon={icon} className="menuBars" onClick={() => setMenuOpen(!menuOpen)} />
         <CSSTransition
           in={menuOpen}
           nodeRef={nodeRef}

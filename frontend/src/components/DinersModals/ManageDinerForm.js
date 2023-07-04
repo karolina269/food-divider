@@ -33,10 +33,6 @@ const ManageDinerForm = (props) => {
       .catch((error) => console.error(error));
   };
 
-  const handleOpenModalConfirm = () => {
-    setShowModalConfirm(true);
-  };
-
   const handleCloseModalConfirm = () => {
     setShowModalConfirm(false);
   };
@@ -57,7 +53,7 @@ const ManageDinerForm = (props) => {
         <button type="submit" className="btn">
           Save
         </button>
-        <button type="button" className="btn delete" onClick={handleOpenModalConfirm}>
+        <button type="button" className="btn delete" onClick={() => setShowModalConfirm(true)}>
           Delete
         </button>
         <ReactModal className="modal" isOpen={showModalConfirm} contentLabel="Confirm delete diner">

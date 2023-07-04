@@ -2,8 +2,8 @@ import axios from "axios";
 import Select from "react-select";
 import ReactModal from "react-modal";
 import { useState, useEffect } from "react";
-import ManageDinersModal from "./DinersModals/ManageDinersModal";
-import NewDinerModal from "./DinersModals/NewDinerModal";
+import ManageDinersModal from "./dinersModals/ManageDinersModal";
+import NewDinerModal from "./dinersModals/NewDinerModal";
 
 import "./Diners.css";
 
@@ -50,18 +50,6 @@ const Diners = (props) => {
     getDiners();
   }, []);
 
-  const handleOpenModalManage = () => {
-    setShowModalManage(true);
-  };
-
-  const handleCloseModalManage = () => {
-    setShowModalManage(false);
-  };
-
-  const handleOpenModalNew = () => {
-    setShowModalNew(true);
-  };
-
   const handleCloseModalNew = () => {
     setShowModalNew(false);
   };
@@ -80,11 +68,11 @@ const Diners = (props) => {
           onChange={chooseDiners}
         />
 
-        <button className="btn manage" onClick={handleOpenModalManage}>
+        <button className="btn manage" onClick={() => setShowModalManage(true)}>
           Manage diners
         </button>
         <ReactModal className="modal" isOpen={showModalManage} contentLabel="manage diners form">
-          <button className="closeModal" onClick={handleCloseModalManage}>
+          <button className="closeModal" onClick={() => setShowModalManage(false)}>
             x
           </button>
           <ManageDinersModal
@@ -97,7 +85,7 @@ const Diners = (props) => {
             setOptions={setOptions}
           />
         </ReactModal>
-        <button className="btn new" onClick={handleOpenModalNew}>
+        <button className="btn new" onClick={() => setShowModalNew(true)}>
           New diner <span>+</span>
         </button>
         <ReactModal className="modal" isOpen={showModalNew} contentLabel="New dish form">

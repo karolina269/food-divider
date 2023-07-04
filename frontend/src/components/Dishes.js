@@ -2,9 +2,9 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import ReactModal from "react-modal";
 import Select from "react-select";
-import NewDishModal from "./DishesModals/NewDishModal";
-import EditDishModal from "./DishesModals/EditDishModal";
-import DeleteDishModal from "./DishesModals/DeleteDishModal";
+import NewDishModal from "./dishesModals/NewDishModal";
+import EditDishModal from "./dishesModals/EditDishModal";
+import DeleteDishModal from "./dishesModals/DeleteDishModal";
 import { gToOz } from "../views/Home";
 
 import "./Dishes.css";
@@ -38,24 +38,12 @@ const Dishes = (props) => {
     }
   };
 
-  const handleOpenModalNew = () => {
-    setShowModalNew(true);
-  };
-
   const handleCloseModalNew = () => {
     setShowModalNew(false);
   };
 
-  const handleOpenModalEdit = () => {
-    setShowModalEdit(true);
-  };
-
   const handleCloseModalEdit = () => {
     setShowModalEdit(false);
-  };
-
-  const handleOpenModalDelete = () => {
-    setShowModalDelete(true);
   };
 
   const handleCloseModalDelete = () => {
@@ -92,10 +80,10 @@ const Dishes = (props) => {
         isClearable={true}
       />
 
-      <button className="btn edit" onClick={handleOpenModalEdit} disabled={isDisabled}>
+      <button className="btn edit" onClick={() => setShowModalEdit(true)} disabled={isDisabled}>
         Edit
       </button>
-      <button className="btn delete" onClick={handleOpenModalDelete} disabled={isDisabled}>
+      <button className="btn delete" onClick={() => setShowModalDelete(true)} disabled={isDisabled}>
         Delete
       </button>
       <ReactModal className="modal" isOpen={showModalDelete} contentLabel="Delete dish">
@@ -110,7 +98,7 @@ const Dishes = (props) => {
         </button>
         <EditDishModal getDishes={getDishes} dishes={dishes} chosenDish={props.chosenDish} unit={props.unit} handleCloseModalEdit={handleCloseModalEdit} />
       </ReactModal>
-      <button className="btn new dish" onClick={handleOpenModalNew}>
+      <button className="btn new dish" onClick={() => setShowModalNew(true)}>
         New dish <span>+</span>
       </button>
       <ReactModal className="modal" isOpen={showModalNew} contentLabel="New dish form">

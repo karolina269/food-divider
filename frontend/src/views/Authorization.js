@@ -1,6 +1,6 @@
-import FormPicker from "../components/Auth/FormPicker";
-import Signup from "../components/Auth/Signup";
-import Login from "../components/Auth/Login";
+import FormPicker from "../components/auth/FormPicker";
+import Signup from "../components/auth/Signup";
+import Login from "../components/auth/Login";
 import { Navigate } from "react-router-dom";
 import { useState } from "react";
 
@@ -13,13 +13,9 @@ const Authorization = (props) => {
     return <Navigate to="/" />;
   }
 
-  const switchForm = (e) => {
-    setCurrentForm(e.target.value);
-  };
-
   return (
     <main className="authorization">
-      <FormPicker switchForm={switchForm} />
+      <FormPicker switchForm={(e) => setCurrentForm(e.target.value)} />
       {currentForm === "signup" ? <Signup /> : <Login setUser={props.setUser} />}
     </main>
   );
