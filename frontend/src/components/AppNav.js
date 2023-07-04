@@ -37,37 +37,40 @@ const AppNav = (props) => {
   };
 
   return (
-    <nav className="mainNav">
-      <FontAwesomeIcon icon={icon} className="menuBars" onClick={toggleMenu} />
-      <CSSTransition
-        in={menuOpen}
-        nodeRef={nodeRef}
-        timeout={0}
-        classNames="mainNavList"
-        unmountOnExit
-        onEnter={() => setIcon(faXmark)}
-        onExit={() => setIcon(faBars)}>
-        <ul ref={nodeRef} className="mainNavList" onMouseLeave={() => setMenuOpen(false)}>
-          {props.user && (
+    <header>
+      <h1>Food Divider</h1>
+      <nav className="mainNav">
+        <FontAwesomeIcon icon={icon} className="menuBars" onClick={toggleMenu} />
+        <CSSTransition
+          in={menuOpen}
+          nodeRef={nodeRef}
+          timeout={0}
+          classNames="mainNavList"
+          unmountOnExit
+          onEnter={() => setIcon(faXmark)}
+          onExit={() => setIcon(faBars)}>
+          <ul ref={nodeRef} className="mainNavList" onMouseLeave={() => setMenuOpen(false)}>
+            {props.user && (
+              <li className="mainNavItem">
+                <Link to="/" onClick={handleLogout}>
+                  Logout
+                </Link>
+              </li>
+            )}
+            {props.user && (
+              <li className="mainNavItem">
+                <Link to="/" onClick={handleDelete}>
+                  Delete your account
+                </Link>
+              </li>
+            )}
             <li className="mainNavItem">
-              <Link to="/" onClick={handleLogout}>
-                Logout
-              </Link>
+              <a href="mailto:karolinastec269@gmail.com">Contact</a>
             </li>
-          )}
-          {props.user && (
-            <li className="mainNavItem">
-              <Link to="/" onClick={handleDelete}>
-                Delete your account
-              </Link>
-            </li>
-          )}
-          <li className="mainNavItem">
-            <a href="mailto:karolinastec269@gmail.com">Contact</a>
-          </li>
-        </ul>
-      </CSSTransition>
-    </nav>
+          </ul>
+        </CSSTransition>
+      </nav>
+    </header>
   );
 };
 

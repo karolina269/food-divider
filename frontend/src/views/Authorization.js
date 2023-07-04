@@ -4,9 +4,9 @@ import Login from "../components/Login";
 import { Navigate } from "react-router-dom";
 import { useState } from "react";
 
-import "./Unauthorized.css";
+import "./Authorization.css";
 
-const Unauthorized = (props) => {
+const Authorization = (props) => {
   const [currentForm, setCurrentForm] = useState("signup");
 
   if (props.user) {
@@ -18,11 +18,11 @@ const Unauthorized = (props) => {
   };
 
   return (
-    <main className="unauthorized">
+    <main className="authorization">
       <FormPicker switchForm={switchForm} />
       {currentForm === "signup" ? <Signup /> : <Login setUser={props.setUser} />}
     </main>
   );
 };
 
-export default Unauthorized;
+export default Authorization;

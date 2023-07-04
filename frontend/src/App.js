@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import Header from "./components/Header";
+import AppNav from "./components/AppNav";
 import AppRoutes from "./routes/AppRoutes";
 
 import "./App.css";
@@ -12,7 +12,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Header setUser={setUser} user={user} />
+      <AppNav setUser={setUser} user={user} />
       <AppRoutes user={user} setUser={setUser} />
     </div>
   );

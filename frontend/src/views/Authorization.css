@@ -1,26 +1,26 @@
-.unauthorized {
+.authorization {
   background-color: var(--light);
   margin: 1rem auto;
   padding: 3rem;
   border-radius: 25px;
 }
 
-.unauthorized form {
+.authorization form {
   margin: auto;
   max-width: 75%;
 }
 
-.unauthorized form .formField {
+.authorization form .formField {
   width: 100%;
   margin-top: 1em;
 }
 
-.unauthorized form .formField label {
+.authorization form .formField label {
   font-size: 0.75em;
   line-height: 2em;
 }
 
-.unauthorized form .formField input {
+.authorization form .formField input {
   width: 100%;
   padding: 1em;
   border-width: 1px;
@@ -28,7 +28,7 @@
   /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
 }
 
-.unauthorized form .formField .btn {
+.authorization form .formField .btn {
   width: 100%;
   text-align: center;
   margin: 2em auto;

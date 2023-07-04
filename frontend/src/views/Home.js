@@ -9,7 +9,7 @@ import "./Home.css";
 export const gToOz = 0.0352739619;
 export const ozToG = 28.3495231;
 
-const Home = (props) => {
+const Home = () => {
   const [totalWeight, setTotalWeight] = useState(0);
   const [netWeight, setNetWeight] = useState(0);
   const [chosenDish, setChosenDish] = useState({});

@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import PrivateRoutes from "./PrivateRoutes";
-import Unauthorized from "../views/Unauthorized";
+import Unauthorized from "../views/Authorization";
 import Home from "../views/Home";
 
 const AppRoutes = (props) => {
