@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import PrivateRoutes from "./PrivateRoutes";
-import Unauthorized from "../views/Authorization";
+import Authorization from "../views/Authorization";
 import Home from "../views/Home";
 
 const AppRoutes = (props) => {
@@ -9,7 +9,7 @@ const AppRoutes = (props) => {
       <Route element={<PrivateRoutes user={props.user} />}>
         <Route path="/" element={<Home user={props.user} />} />
       </Route>
-      <Route path="/unauthorized" element={<Unauthorized setUser={props.setUser} user={props.user} />} />
+      <Route path="/authorization" element={<Authorization setUser={props.setUser} user={props.user} />} />
     </Routes>
   );
 };

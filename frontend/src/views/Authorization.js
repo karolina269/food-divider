@@ -1,6 +1,6 @@
-import FormPicker from "../components/FormPicker";
-import Signup from "../components/Signup";
-import Login from "../components/Login";
+import FormPicker from "../components/Auth/FormPicker";
+import Signup from "../components/Auth/Signup";
+import Login from "../components/Auth/Login";
 import { Navigate } from "react-router-dom";
 import { useState } from "react";
 
