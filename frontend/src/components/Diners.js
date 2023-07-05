@@ -41,9 +41,9 @@ const Diners = (props) => {
     });
   };
 
-  const chooseDiners = (e) => {
-    props.setChosenDiners(e);
-    localStorage.setItem("chosenDiners", JSON.stringify(e));
+  const handleSelectChange = (selectedOption) => {
+    props.setChosenDiners(selectedOption);
+    localStorage.setItem("chosenDiners", JSON.stringify(selectedOption));
   };
 
   useEffect(() => {
@@ -65,7 +65,7 @@ const Diners = (props) => {
           value={value}
           options={options}
           cacheOptions={false}
-          onChange={chooseDiners}
+          onChange={handleSelectChange}
         />
 
         <button className="btn manage" onClick={() => setShowModalManage(true)}>

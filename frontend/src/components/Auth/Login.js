@@ -1,23 +1,14 @@
 import axios from "axios";
 import { useState } from "react";
+import useFormData from "../hooks/useFormData";
 
 const Login = (props) => {
-  const [formData, setFormData] = useState({
+  const { formData, handleInputChange } = useFormData({
     email: "",
     password: "",
   });
 
   const [loginMessage, setLoginMessage] = useState("");
-
-  const handleInputChange = (e) => {
-    const target = e.target;
-    const name = target.name;
-
-    setFormData({
-      ...formData,
-      [name]: target.value,
-    });
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();

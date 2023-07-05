@@ -11,7 +11,7 @@ const Servings = (props) => {
   }, [props.chosenDiners]);
 
   useEffect(() => {
-    if (!(Object.keys(props.chosenDish).length === 0 && props.chosenDish.constructor === Object)) {
+    if (props.chosenDish) {
       props.unit === "g"
         ? props.setNetWeight(props.totalWeight - props.chosenDish.weight)
         : props.setNetWeight(props.totalWeight - props.chosenDish.weight * gToOz);

@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useState } from "react";
+import useFormData from "../hooks/useFormData";
 
 const Signup = () => {
-  const [formData, setFormData] = useState({
+  const { formData, handleInputChange } = useFormData({
     email: "",
     password: "",
     confirmPassword: "",
@@ -67,16 +68,6 @@ const Signup = () => {
     }
 
     return !validationErrors.email && !validationErrors.password && !validationErrors.confirmPassword;
-  };
-
-  const handleInputChange = (e) => {
-    const target = e.target;
-    const name = target.name;
-
-    setFormData({
-      ...formData,
-      [name]: target.value,
-    });
   };
 
   const handleSubmit = (e) => {

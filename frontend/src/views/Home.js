@@ -12,7 +12,7 @@ export const ozToG = 28.3495231;
 const Home = () => {
   const [totalWeight, setTotalWeight] = useState(0);
   const [netWeight, setNetWeight] = useState(0);
-  const [chosenDish, setChosenDish] = useState({});
+  const [chosenDish, setChosenDish] = useState(null);
   const [chosenDiners, setChosenDiners] = useState(
     JSON.parse(localStorage.getItem("chosenDiners")) ? JSON.parse(localStorage.getItem("chosenDiners")) : []
   );

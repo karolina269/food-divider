@@ -29,12 +29,11 @@ const Dishes = (props) => {
     getDishes();
   }, []);
 
-  const chooseDish = (e) => {
-    //próbuje zrobić tak, żeby przy clear nie wyskakiwał błąd, ale nie udaje się
-    if (!(Object.keys(e).length === 0 && e.constructor === Object)) {
-      props.setChosenDish(e);
+  const handleSelectChange = (selectedOption) => {
+    if (typeof selectedOption !== String) {
+      props.setChosenDish(selectedOption);
     } else {
-      props.setChosenDish({});
+      props.setChosenDish(null);
     }
   };
 
@@ -51,7 +50,7 @@ const Dishes = (props) => {
   };
 
   useEffect(() => {
-    if (!(Object.keys(props.chosenDish).length === 0 && props.chosenDish.constructor === Object)) {
+    if (props.chosenDish) {
       setIsDisabled(false);
     }
   }, [props.chosenDish]);
@@ -74,7 +73,7 @@ const Dishes = (props) => {
           " " +
           props.unit
         }
-        onChange={chooseDish}
+        onChange={handleSelectChange}
         //ta linijka chyba nic nie zmienia:
         // defaultValue={value}
         isClearable={true}
