@@ -72,9 +72,6 @@ const Diners = (props) => {
           Manage diners
         </button>
         <ReactModal className="modal" isOpen={showModalManage} contentLabel="manage diners form">
-          <button className="closeModal" onClick={() => setShowModalManage(false)}>
-            x
-          </button>
           <ManageDinersModal
             diners={diners}
             setDiners={setDiners}
@@ -83,6 +80,7 @@ const Diners = (props) => {
             setValue={setValue}
             options={options}
             setOptions={setOptions}
+            setShowModalManage={setShowModalManage}
           />
         </ReactModal>
         <button className="btn new" onClick={() => setShowModalNew(true)}>

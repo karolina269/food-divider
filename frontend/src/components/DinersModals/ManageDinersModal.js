@@ -1,9 +1,12 @@
 import ManageDinerForm from "./ManageDinerForm";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import "./ManageDinersModal.css";
 
 const ManageDinersModal = (props) => {
   return (
     <section className="manageDiners">
+      <FontAwesomeIcon icon={faXmark} className="closeModal" onClick={() => props.setShowModalManage(false)} />
       {props.diners.map((diner) => {
         return (
           <ManageDinerForm

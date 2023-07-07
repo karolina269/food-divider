@@ -17,7 +17,6 @@ const Dishes = (props) => {
   const [showModalEdit, setShowModalEdit] = useState(false);
   const [showModalDelete, setShowModalDelete] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
-  const [value, setValue] = useState("");
 
   const getDishes = () => {
     axios.get("http://localhost:3005/dishes/all").then((res) => {
@@ -74,8 +73,6 @@ const Dishes = (props) => {
           props.unit
         }
         onChange={handleSelectChange}
-        //ta linijka chyba nic nie zmienia:
-        // defaultValue={value}
         isClearable={true}
       />
 
@@ -86,25 +83,16 @@ const Dishes = (props) => {
         Delete
       </button>
       <ReactModal className="modal" isOpen={showModalDelete} contentLabel="Delete dish">
-        <button className="closeModal" onClick={handleCloseModalDelete}>
-          x
-        </button>
-        <DeleteDishModal getDishes={getDishes} chosenDish={props.chosenDish} handleCloseModalDelete={handleCloseModalDelete} setValue={setValue} />
+        <DeleteDishModal getDishes={getDishes} chosenDish={props.chosenDish} handleCloseModalDelete={handleCloseModalDelete} />
       </ReactModal>
       <ReactModal className="modal" isOpen={showModalEdit} contentLabel="edit dish form">
-        <button className="closeModal" onClick={handleCloseModalEdit}>
-          x
-        </button>
         <EditDishModal getDishes={getDishes} dishes={dishes} chosenDish={props.chosenDish} unit={props.unit} handleCloseModalEdit={handleCloseModalEdit} />
       </ReactModal>
       <button className="btn new dish" onClick={() => setShowModalNew(true)}>
         New dish <span>+</span>
       </button>
       <ReactModal className="modal" isOpen={showModalNew} contentLabel="New dish form">
-        <button className="closeModal" onClick={handleCloseModalNew}>
-          x
-        </button>
-        <NewDishModal setDishes={setDishes} dishes={dishes} handleCloseModalNew={handleCloseModalNew} unit={props.unit} setValue={setValue} />
+        <NewDishModal setDishes={setDishes} dishes={dishes} handleCloseModalNew={handleCloseModalNew} unit={props.unit} />
       </ReactModal>
     </section>
   );

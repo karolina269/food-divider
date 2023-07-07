@@ -1,13 +1,20 @@
+import { useState } from "react";
 import { gToOz, ozToG } from "../views/Home";
 import "./TotalWeight.css";
 
 const TotalWeight = (props) => {
+  const [totalWeightGrams, setTotalWeightGrams] = useState(0);
   const selectUnit = (e) => {
     props.setUnit(e.target.value);
     if (e.target.value === "oz") {
+      setTotalWeightGrams(props.totalWeight);
       props.setTotalWeight(Math.round(props.totalWeight * gToOz * 100) / 100);
     } else {
-      props.setTotalWeight(Math.round(props.totalWeight * ozToG * 100) / 100);
+      if (totalWeightGrams) {
+        props.setTotalWeight(totalWeightGrams);
+      } else {
+        props.setTotalWeight(Math.round(props.totalWeight * ozToG * 100) / 100);
+      }
     }
   };
 

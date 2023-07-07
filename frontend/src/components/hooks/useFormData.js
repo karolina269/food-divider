@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-const useFormData = (initialFormData) => {
-  const [formData, setFormData] = useState(initialFormData);
+const useFormData = (initState) => {
+  const [formData, setFormData] = useState(initState);
 
   const handleInputChange = (e) => {
     const target = e.target;

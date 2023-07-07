@@ -24,7 +24,6 @@ const Login = (props) => {
           setLoginMessage("");
           props.setUser(res.data);
           localStorage.setItem("user", JSON.stringify(res.data));
-          console.log("Logged in", res.data.jwt);
         }
       })
       .catch((error) => console.log(error));

@@ -13,6 +13,20 @@
   font-size: 0.75em;
 }
 
-.formDish button {
-  margin-top: 1rem;
+.formDish span {
+  font-weight: 600;
+}
+
+.formDish .btn {
+  margin: 1rem 1rem 0 0;
+}
+
+.formDish .btn.cancel {
+  color: lightgray;
+  font-weight: 300;
+}
+
+form input {
+  padding: 0.25em 0.35em;
+  border: 1px solid var(--dark);
 }

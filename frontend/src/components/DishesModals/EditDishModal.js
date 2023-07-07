@@ -100,8 +100,12 @@ const EditDishModal = (props) => {
         <input type="number" name="weight" placeholder="dish weight" value={formData.weight} onChange={handleInputChange} />
         {errors.weight && <p className="error">{errors.weight}</p>}
       </div>
-
-      <button className="btn">Save</button>
+      <div className="buttonsWrapper">
+        <button className="btn cancel" onClick={props.handleCloseModalEdit}>
+          Cancel
+        </button>
+        <button className="btn">Save</button>
+      </div>
     </form>
   );
 };

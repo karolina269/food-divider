@@ -25,6 +25,7 @@
 
 input {
   accent-color: var(--accent);
+  border-radius: 2px;
 }
 
 button:hover {

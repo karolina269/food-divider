@@ -71,13 +71,11 @@ const NewDishModal = (props) => {
       if (props.unit === "g") {
         axios.post("http://localhost:3005/dishes/add", formData).then((res) => {
           props.setDishes(props.dishes.concat(res.data.newDish));
-          // props.setValue(res.data.newDish);
           console.log(res.data.message);
         });
       } else {
         axios.post("http://localhost:3005/dishes/add", { ...formData, weight: formData.weight * ozToG }).then((res) => {
           props.setDishes(props.dishes.concat(res.data.newDish));
-          // props.setValue(res.data.newDish);
         });
       }
     }
@@ -97,7 +95,12 @@ const NewDishModal = (props) => {
         <input type="number" name="weight" placeholder="weight" value={formData.weight} onChange={handleInputChange} />
         {errors.weight && <p className="error">{errors.weight}</p>}
       </div>
-      <button className="btn">Add</button>
+      <div className="buttonsWrapper">
+        <button className="btn cancel" onClick={props.handleCloseModalNew}>
+          Cancel
+        </button>
+        <button className="btn">Add</button>
+      </div>
     </form>
   );
 };
