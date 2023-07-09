@@ -51,6 +51,8 @@ const Dishes = (props) => {
   useEffect(() => {
     if (props.chosenDish) {
       setIsDisabled(false);
+    } else {
+      setIsDisabled(true);
     }
   }, [props.chosenDish]);
 
@@ -99,6 +101,7 @@ const Dishes = (props) => {
           chosenDish={props.chosenDish}
           handleCloseModalDelete={handleCloseModalDelete}
           clear={clear}
+          setIsDisabled={setIsDisabled}
         />
       </ReactModal>
       <ReactModal className="modal" isOpen={showModalEdit} contentLabel="edit dish form">
