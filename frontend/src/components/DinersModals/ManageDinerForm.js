@@ -1,7 +1,8 @@
 import ConfirmDelete from "./ConfirmDelete";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import ReactModal from "react-modal";
 import axios from "axios";
+import { CSSTransition } from "react-transition-group";
 import "./ManageDinerForm.css";
 
 const ManageDinerForm = (props) => {
@@ -10,7 +11,9 @@ const ManageDinerForm = (props) => {
     name: props.diner.name,
     calories: props.diner.calories,
   });
-  const [message, setMessage] = useState("");
+  const [updateMessage, setUpdateMessage] = useState("");
+  const nodeRef = useRef(null);
+  const [triggerMessage, setTriggerMessage] = useState(false);
 
   const handleInputChange = (e) => {
     const target = e.target;
@@ -22,8 +25,8 @@ const ManageDinerForm = (props) => {
     });
   };
   const editAndSaveDiner = (e) => {
-    console.log("editAndSaveDiner");
     e.preventDefault();
+    setTriggerMessage(false);
     axios
       .post("http://localhost:3005/diners/edit/" + props.diner._id, formData)
       .then((res) => {
@@ -46,7 +49,8 @@ const ManageDinerForm = (props) => {
             })
           );
         }
-        setMessage(res.data.message);
+        setUpdateMessage(res.data.message);
+        setTriggerMessage(true);
       })
       .catch((error) => console.error(error));
   };
@@ -84,7 +88,11 @@ const ManageDinerForm = (props) => {
             handleCloseModalConfirm={handleCloseModalConfirm}
           />
         </ReactModal>
-        <p className="message">{message}</p>
+        <CSSTransition in={triggerMessage} nodeRef={nodeRef} timeout={0} mountOnEnter unmountOnExit classNames="updateMessage">
+          <p ref={nodeRef} className="updateMessage">
+            {updateMessage}
+          </p>
+        </CSSTransition>
       </form>
     </>
   );

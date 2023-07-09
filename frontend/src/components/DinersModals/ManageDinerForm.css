@@ -1,6 +1,15 @@
-.message {
+.updateMessage {
   font-size: 0.8em;
   width: 100%;
   text-align: center;
   margin: 0;
+}
+
+.updateMessage-enter {
+  opacity: 0;
+}
+
+.updateMessage-enter-done {
+  opacity: 1;
+  transition: opacity 1s;
 }
