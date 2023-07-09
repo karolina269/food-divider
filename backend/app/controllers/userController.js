@@ -2,15 +2,6 @@ const User = require("../models/UserModel");
 const bcrypt = require("bcrypt");
 
 module.exports = {
-  // show: (req, res) => {
-  //   User.findOne(req.params.id)
-  //     .then((user) => {
-  //       res.status(200).json(user);
-  //     })
-  //     .catch((err) => {
-  //       res.status(500).json({ error: err });
-  //     });
-  // },
   create: (req, res) => {
     const newUser = User(req.body);
     newUser

@@ -75,9 +75,6 @@ const ManageDinerForm = (props) => {
           Delete
         </button>
         <ReactModal className="modal" isOpen={showModalConfirm} contentLabel="Confirm delete diner">
-          <button className="closeModal" onClick={handleCloseModalConfirm}>
-            x
-          </button>
           <ConfirmDelete
             setDiners={props.setDiners}
             diner={props.diner}

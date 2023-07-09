@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { gToOz, ozToG } from "../views/Home";
+import { Tooltip } from "react-tooltip";
 import "./TotalWeight.css";
 
 const TotalWeight = (props) => {
@@ -24,9 +25,16 @@ const TotalWeight = (props) => {
         Total weight
       </label>
       {props.netWeight < 0 && (
-        <p className="netWeightError" title="Change the dish or enter a higher total weight">
-          Net weight is below 0
-        </p>
+        <>
+          <p
+            className="netWeightError"
+            data-tooltip-id="netWeightErrorTooltip"
+            data-tooltip-content="Change the dish or enter a higher total weight"
+            data-tooltip-place="top">
+            Net weight is below 0
+          </p>
+          <Tooltip id="netWeightErrorTooltip" />
+        </>
       )}
       <div className="valueWrapper">
         <input

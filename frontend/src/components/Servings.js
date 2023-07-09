@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { gToOz } from "../views/Home";
+import { Tooltip } from "react-tooltip";
 
 import "./Servings.css";
 
@@ -32,8 +33,14 @@ const Servings = (props) => {
           servingSize = Math.round((diner.calories / totalCalories) * props.netWeight * 100) / 100;
         }
         return (
-          <div className="diner" key={"chosen" + diner.key}>
+          <div
+            className="diner"
+            key={"chosen" + diner.key}
+            data-tooltip-id="dinerServing"
+            data-tooltip-content="Net weight is below 0"
+            data-tooltip-place="top">
             {diner.name}: {servingSize >= 0 ? servingSize : "_"} {props.unit}
+            {servingSize < 0 && <Tooltip id="dinerServing" />}
           </div>
         );
       })}

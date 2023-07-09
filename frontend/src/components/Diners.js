@@ -78,7 +78,13 @@ const Diners = (props) => {
           New diner <span>+</span>
         </button>
         <ReactModal className="modal" isOpen={showModalNew} contentLabel="New diner form">
-          <NewDinerModal setDiners={setDiners} diners={diners} handleCloseModalNew={handleCloseModalNew} />
+          <NewDinerModal
+            setDiners={setDiners}
+            diners={diners}
+            chosenDiners={props.chosenDiners}
+            setChosenDiners={props.setChosenDiners}
+            handleCloseModalNew={handleCloseModalNew}
+          />
         </ReactModal>
       </section>
     </section>

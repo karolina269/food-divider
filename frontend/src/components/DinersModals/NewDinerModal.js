@@ -69,6 +69,7 @@ const NewDinerModal = (props) => {
     } else {
       axios.post("http://localhost:3005/diners/add", formData).then((res) => {
         props.setDiners(props.diners.concat(res.data));
+        props.setChosenDiners(props.chosenDiners.concat({ ...res.data, label: formData.name + " - " + formData.calories + " kcal", key: res.data._id }));
       });
     }
     props.handleCloseModalNew();

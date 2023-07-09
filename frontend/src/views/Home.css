@@ -88,9 +88,3 @@ button:hover:disabled {
   padding: 3rem;
   border-radius: 25px;
 }
-
-.closeModal {
-  font-size: 2rem;
-  float: right;
-  cursor: pointer;
-}

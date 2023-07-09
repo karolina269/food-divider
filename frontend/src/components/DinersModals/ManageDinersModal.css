@@ -1,3 +1,17 @@
+.manageDiners .closeModalWrapper {
+  text-align: right;
+}
+
+.manageDiners .closeModalWrapper .closeModal {
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.manageDiners .noDiners {
+  text-align: center;
+  width: 100%;
+}
+
 .manageDiners form {
   margin-top: 1.75em;
   width: 100%;

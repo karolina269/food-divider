@@ -4,7 +4,7 @@ const DeleteDishModal = (props) => {
   const deleteDish = () => {
     axios.delete("http://localhost:3005/dishes/delete/" + props.chosenDish.key).then((res) => {
       props.setDishes(props.dishes.filter((dish) => dish._id !== props.chosenDish.key));
-      props.clear();
+      props.setChosenDish(null);
       console.log(res.data.message);
     });
     props.handleCloseModalDelete();

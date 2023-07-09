@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import useFormData from "../hooks/useFormData";
 
-const Signup = () => {
+const Signup = (props) => {
   const { formData, handleInputChange } = useFormData({
     email: "",
     password: "",
@@ -14,6 +14,8 @@ const Signup = () => {
     password: "",
     confirmPassword: "",
   });
+
+  const [signupMessage, setSignupMessage] = useState("");
 
   const validate = () => {
     let validationErrors = {
@@ -58,7 +60,7 @@ const Signup = () => {
     if (formData.password.trim() !== formData.confirmPassword.trim()) {
       validationErrors.password = true;
       setErrors((prevErrors) => {
-        return { ...prevErrors, confirmPassword: "Confirm password does not match password" };
+        return { ...prevErrors, confirmPassword: "Passwords do not match" };
       });
     } else {
       validationErrors.password = false;
@@ -72,6 +74,7 @@ const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setSignupMessage("");
 
     if (!validate()) {
       return;
@@ -83,8 +86,18 @@ const Signup = () => {
         })
         .then((res) => {
           console.log(res.data.message);
+          axios
+            .post("http://localhost:3005/user/login", {
+              email: formData.email,
+              password: formData.password,
+            })
+            .then((res) => {
+              props.setUser(res.data);
+              localStorage.setItem("user", JSON.stringify(res.data));
+            })
+            .catch((error) => console.error(error));
         })
-        .catch((error) => console.log(error));
+        .catch((error) => setSignupMessage(error.response.data.message));
     }
   };
 
@@ -106,6 +119,7 @@ const Signup = () => {
           <input type="password" id="confirmPassword " name="confirmPassword" onChange={handleInputChange} placeholder="********" />
           {errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
         </div>
+        {signupMessage && <p className="error">{signupMessage}</p>}
         <div className="formField">
           <button className="btn">Signup</button>
         </div>

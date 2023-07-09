@@ -18,21 +18,16 @@ const Login = (props) => {
         password: formData.password,
       })
       .then((res) => {
-        if (res.data.error) {
-          setLoginMessage(res.data.message);
-        } else {
-          setLoginMessage("");
-          props.setUser(res.data);
-          localStorage.setItem("user", JSON.stringify(res.data));
-        }
+        setLoginMessage("");
+        props.setUser(res.data);
+        localStorage.setItem("user", JSON.stringify(res.data));
       })
-      .catch((error) => console.log(error));
+      .catch((error) => setLoginMessage(error.response.data.message));
   };
 
   return (
     <main className="login">
       <form onSubmit={handleSubmit} noValidate>
-        {loginMessage && <h2 className="error">{loginMessage}</h2>}
         <div className="formField">
           <label htmlFor="email">Email:</label>
           <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleInputChange} />
@@ -41,6 +36,7 @@ const Login = (props) => {
           <label htmlFor="password">Password:</label>
           <input type="password" name="password" placeholder="********" value={formData.password} onChange={handleInputChange} />
         </div>
+        {loginMessage && <p className="error">{loginMessage}</p>}
         <div className="formField">
           <button className="btn" title="acces key: l">
             Login

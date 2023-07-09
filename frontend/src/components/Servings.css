@@ -5,4 +5,5 @@
   font-weight: 600;
   background-color: var(--accent);
   border-radius: 0.75em;
+  cursor: default;
 }

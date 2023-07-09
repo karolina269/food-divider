@@ -6,7 +6,10 @@ import "./ManageDinersModal.css";
 const ManageDinersModal = (props) => {
   return (
     <section className="manageDiners">
-      <FontAwesomeIcon icon={faXmark} className="closeModal" onClick={() => props.setShowModalManage(false)} />
+      <div className="closeModalWrapper">
+        <FontAwesomeIcon icon={faXmark} className="closeModal" onClick={() => props.setShowModalManage(false)} />
+      </div>
+      {!props.diners.length && <p className="noDiners">You haven't added any diners yet</p>}
       {props.diners.map((diner) => {
         return (
           <ManageDinerForm

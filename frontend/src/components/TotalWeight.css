@@ -8,6 +8,7 @@
   color: red;
   font-size: 0.75em;
   margin-bottom: 0;
+  cursor: default;
 }
 
 .totalWeightSection .valueWrapper {

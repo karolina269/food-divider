@@ -12,10 +12,15 @@ const ConfirmDelete = (props) => {
 
   return (
     <section className="deleteDiner">
-      Are you sure you want to delete <span>{props.diner.name}?</span>
-      <button className="btn confirm" onClick={deleteDiner}>
-        Yes
-      </button>
+      Are you sure you want to delete <span>{props.diner.name}</span>?
+      <div className="buttonsWrapper">
+        <button className="btn cancel" onClick={props.handleCloseModalConfirm}>
+          Cancel
+        </button>
+        <button className="btn confirm" onClick={deleteDiner}>
+          Yes
+        </button>
+      </div>
     </section>
   );
 };

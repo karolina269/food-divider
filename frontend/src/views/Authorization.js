@@ -16,7 +16,7 @@ const Authorization = (props) => {
   return (
     <main className="authorization">
       <FormPicker switchForm={(e) => setCurrentForm(e.target.value)} />
-      {currentForm === "signup" ? <Signup /> : <Login setUser={props.setUser} />}
+      {currentForm === "signup" ? <Signup setUser={props.setUser} /> : <Login setUser={props.setUser} />}
     </main>
   );
 };

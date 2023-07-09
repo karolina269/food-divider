@@ -5,7 +5,10 @@ import { gToOz } from "../../views/Home";
 import "./DishModal.css";
 
 const EditDishModal = (props) => {
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    name: props.chosenDish.name,
+    weight: props.chosenDish.weight,
+  });
 
   const [errors, setErrors] = useState({
     name: "",
@@ -22,7 +25,7 @@ const EditDishModal = (props) => {
           name: props.chosenDish.name,
           weight: Math.round(props.chosenDish.weight * gToOz * 100) / 100,
         });
-  }, [props]);
+  }, [props.unit, props.chosenDish]);
 
   const handleInputChange = (e) => {
     const target = e.target;

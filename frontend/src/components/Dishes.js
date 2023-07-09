@@ -58,12 +58,6 @@ const Dishes = (props) => {
 
   const selectRef = useRef(null);
 
-  const clear = () => {
-    if (selectRef.current) {
-      selectRef.current.clearValue();
-    }
-  };
-
   return (
     <section className="dishes">
       <h2 className="sectionTitle">Choose the dish</h2>
@@ -99,8 +93,8 @@ const Dishes = (props) => {
           dishes={dishes}
           setDishes={setDishes}
           chosenDish={props.chosenDish}
+          setChosenDish={props.setChosenDish}
           handleCloseModalDelete={handleCloseModalDelete}
-          clear={clear}
           setIsDisabled={setIsDisabled}
         />
       </ReactModal>
