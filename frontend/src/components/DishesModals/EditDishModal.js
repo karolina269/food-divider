@@ -81,7 +81,15 @@ const EditDishModal = (props) => {
         setFormData({ ...formData, weight: formData.weight * gToOz });
       }
       axios.post("http://localhost:3005/dishes/edit/" + props.chosenDish.key, formData).then(() => {
-        props.getDishes();
+        const index = props.dishes.findIndex((dish) => dish._id === props.chosenDish.key);
+        props.setDishes(
+          props.dishes.toSpliced(index, 1, {
+            ...props.dishes[index],
+            name: formData.name,
+            weight: formData.weight,
+          })
+        );
+        props.setChosenDish({ ...props.chosenDish, name: formData.name, weight: formData.weight });
       });
     }
     props.handleCloseModalEdit();

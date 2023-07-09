@@ -5,10 +5,7 @@ const ConfirmDelete = (props) => {
   const deleteDiner = () => {
     axios.delete("http://localhost:3005/diners/delete/" + props.diner._id).then(() => {
       props.setDiners(props.diners.filter((diner) => diner._id !== props.diner._id));
-      props.setValue(props.value.filter((diner) => diner._id !== props.diner._id));
-      props.setOptions(props.options.filter((diner) => diner._id !== props.diner._id));
-
-      console.log("kasowanie");
+      props.setChosenDiners(props.chosenDiners.filter((diner) => diner.key !== props.diner._id));
     });
     props.handleCloseModalConfirm();
   };

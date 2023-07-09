@@ -1,7 +1,7 @@
 import axios from "axios";
 import Select from "react-select";
 import ReactModal from "react-modal";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import ManageDinersModal from "./dinersModals/ManageDinersModal";
 import NewDinerModal from "./dinersModals/NewDinerModal";
 
@@ -11,29 +11,6 @@ const Diners = (props) => {
   const [diners, setDiners] = useState([]);
   const [showModalManage, setShowModalManage] = useState(false);
   const [showModalNew, setShowModalNew] = useState(false);
-  const [options, setOptions] = useState([]);
-  const [value, setValue] = useState([]);
-
-  useEffect(() => {
-    setOptions(
-      diners.map((diner) => ({
-        label: diner.name + " - " + diner.calories + " kcal",
-        value: diner.name,
-        name: diner.name,
-        calories: diner.calories,
-        key: diner._id,
-      }))
-    );
-    setValue(
-      props.chosenDiners.map((diner) => ({
-        label: diner.name + " - " + diner.calories + " kcal",
-        value: diner.name,
-        name: diner.name,
-        calories: diner.calories,
-        key: diner.key,
-      }))
-    );
-  }, [diners, props.chosenDiners]);
 
   const getDiners = () => {
     axios.get("http://localhost:3005/diners/all").then((res) => {
@@ -54,17 +31,34 @@ const Diners = (props) => {
     setShowModalNew(false);
   };
 
+  useEffect(() => {
+    localStorage.setItem("chosenDiners", JSON.stringify(props.chosenDiners));
+  }, [props.chosenDiners]);
+
+  const selectRef = useRef(null);
+
   return (
     <section className="diners">
       <h2 className="sectionTitle">Choose diners</h2>
       <section className="chooseDiners">
         <Select
+          ref={selectRef}
           className="dinersSelection"
-          filterOption={() => true}
           isMulti
-          value={value}
-          options={options}
-          cacheOptions={false}
+          value={props.chosenDiners.map((diner) => ({
+            label: diner.name + " - " + diner.calories + " kcal",
+            value: diner.name,
+            name: diner.name,
+            calories: diner.calories,
+            key: diner.key,
+          }))}
+          options={diners.map((diner) => ({
+            label: diner.name + " - " + diner.calories + " kcal",
+            value: diner.name,
+            name: diner.name,
+            calories: diner.calories,
+            key: diner._id,
+          }))}
           onChange={handleSelectChange}
         />
 
@@ -75,21 +69,15 @@ const Diners = (props) => {
           <ManageDinersModal
             diners={diners}
             setDiners={setDiners}
-            getDiners={getDiners}
-            value={value}
-            setValue={setValue}
-            options={options}
-            setOptions={setOptions}
+            chosenDiners={props.chosenDiners}
+            setChosenDiners={props.setChosenDiners}
             setShowModalManage={setShowModalManage}
           />
         </ReactModal>
         <button className="btn new" onClick={() => setShowModalNew(true)}>
           New diner <span>+</span>
         </button>
-        <ReactModal className="modal" isOpen={showModalNew} contentLabel="New dish form">
-          <button className="closeModal" onClick={handleCloseModalNew}>
-            x
-          </button>
+        <ReactModal className="modal" isOpen={showModalNew} contentLabel="New diner form">
           <NewDinerModal setDiners={setDiners} diners={diners} handleCloseModalNew={handleCloseModalNew} />
         </ReactModal>
       </section>

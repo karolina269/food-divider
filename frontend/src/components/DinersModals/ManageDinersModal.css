@@ -1,5 +1,6 @@
 .manageDiners form {
   margin-top: 1.75em;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

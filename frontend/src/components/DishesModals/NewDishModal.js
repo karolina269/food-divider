@@ -71,11 +71,15 @@ const NewDishModal = (props) => {
       if (props.unit === "g") {
         axios.post("http://localhost:3005/dishes/add", formData).then((res) => {
           props.setDishes(props.dishes.concat(res.data.newDish));
+          props.setChosenDish({ ...res.data.newDish, key: res.data.newDish._id });
+          console.log({ ...res.data.newDish, key: res.data.newDish._id });
           console.log(res.data.message);
         });
       } else {
         axios.post("http://localhost:3005/dishes/add", { ...formData, weight: formData.weight * ozToG }).then((res) => {
           props.setDishes(props.dishes.concat(res.data.newDish));
+          props.setChosenDish({ ...res.data.newDish, key: res.data.newDish._id });
+          console.log(res.data.message);
         });
       }
     }

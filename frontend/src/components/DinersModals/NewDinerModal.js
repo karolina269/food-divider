@@ -87,8 +87,12 @@ const NewDinerModal = (props) => {
         <input type="number" name="calories" placeholder="daily calorie intake" value={formData.calories} onChange={handleInputChange} />
         {errors.weight && <p className="error">{errors.calories}</p>}
       </div>
-
-      <button className="btn">Add</button>
+      <div className="buttonsWrapper">
+        <button className="btn cancel" onClick={props.handleCloseModalNew}>
+          Cancel
+        </button>
+        <button className="btn">Add</button>
+      </div>
     </form>
   );
 };

@@ -14,11 +14,8 @@ const ManageDinersModal = (props) => {
             key={diner._id}
             setDiners={props.setDiners}
             diners={props.diners}
-            getDiners={props.getDiners}
-            value={props.value}
-            setValue={props.setValue}
-            options={props.options}
-            setOptions={props.setOptions}
+            chosenDiners={props.chosenDiners}
+            setChosenDiners={props.setChosenDiners}
           />
         );
       })}

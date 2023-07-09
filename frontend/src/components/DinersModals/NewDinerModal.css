@@ -13,6 +13,11 @@
   font-size: 0.75em;
 }
 
-.formNewDiner button {
-  margin-top: 1rem;
+.formNewDiner .btn {
+  margin: 1rem 1rem 0 0;
+}
+
+.formNewDiner .btn.cancel {
+  color: lightgray;
+  font-weight: 300;
 }

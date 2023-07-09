@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import ReactModal from "react-modal";
 import Select from "react-select";
 import NewDishModal from "./dishesModals/NewDishModal";
@@ -54,11 +54,21 @@ const Dishes = (props) => {
     }
   }, [props.chosenDish]);
 
+  const selectRef = useRef(null);
+
+  const clear = () => {
+    if (selectRef.current) {
+      selectRef.current.clearValue();
+    }
+  };
+
   return (
     <section className="dishes">
       <h2 className="sectionTitle">Choose the dish</h2>
       <Select
+        ref={selectRef}
         className="dishesSelection"
+        value={props.chosenDish}
         options={dishes.map((dish) => ({
           value: dish.name,
           name: dish.name,
@@ -83,16 +93,36 @@ const Dishes = (props) => {
         Delete
       </button>
       <ReactModal className="modal" isOpen={showModalDelete} contentLabel="Delete dish">
-        <DeleteDishModal getDishes={getDishes} chosenDish={props.chosenDish} handleCloseModalDelete={handleCloseModalDelete} />
+        <DeleteDishModal
+          dishes={dishes}
+          setDishes={setDishes}
+          chosenDish={props.chosenDish}
+          handleCloseModalDelete={handleCloseModalDelete}
+          clear={clear}
+        />
       </ReactModal>
       <ReactModal className="modal" isOpen={showModalEdit} contentLabel="edit dish form">
-        <EditDishModal getDishes={getDishes} dishes={dishes} chosenDish={props.chosenDish} unit={props.unit} handleCloseModalEdit={handleCloseModalEdit} />
+        <EditDishModal
+          setDishes={setDishes}
+          dishes={dishes}
+          chosenDish={props.chosenDish}
+          setChosenDish={props.setChosenDish}
+          unit={props.unit}
+          handleCloseModalEdit={handleCloseModalEdit}
+        />
       </ReactModal>
       <button className="btn new dish" onClick={() => setShowModalNew(true)}>
         New dish <span>+</span>
       </button>
       <ReactModal className="modal" isOpen={showModalNew} contentLabel="New dish form">
-        <NewDishModal setDishes={setDishes} dishes={dishes} handleCloseModalNew={handleCloseModalNew} unit={props.unit} />
+        <NewDishModal
+          setDishes={setDishes}
+          dishes={dishes}
+          chosenDish={props.chosenDish}
+          setChosenDish={props.setChosenDish}
+          handleCloseModalNew={handleCloseModalNew}
+          unit={props.unit}
+        />
       </ReactModal>
     </section>
   );

@@ -27,7 +27,25 @@ const ManageDinerForm = (props) => {
     axios
       .post("http://localhost:3005/diners/edit/" + props.diner._id, formData)
       .then((res) => {
-        props.getDiners();
+        const index = props.diners.findIndex((diner) => diner._id === props.diner._id);
+        props.setDiners(
+          props.diners.toSpliced(index, 1, {
+            ...props.diners[index],
+            name: formData.name,
+            calories: formData.calories,
+          })
+        );
+        const chosenIndex = props.chosenDiners.findIndex((diner) => diner.key === props.diner._id);
+        if (chosenIndex >= 0) {
+          props.setChosenDiners(
+            props.chosenDiners.toSpliced(chosenIndex, 1, {
+              ...props.chosenDiners[chosenIndex],
+              label: formData.name + " - " + formData.calories + " kcal",
+              name: formData.name,
+              calories: formData.calories,
+            })
+          );
+        }
         setMessage(res.data.message);
       })
       .catch((error) => console.error(error));
@@ -64,11 +82,9 @@ const ManageDinerForm = (props) => {
             setDiners={props.setDiners}
             diner={props.diner}
             diners={props.diners}
+            setChosenDiners={props.setChosenDiners}
+            chosenDiners={props.chosenDiners}
             handleCloseModalConfirm={handleCloseModalConfirm}
-            value={props.value}
-            setValue={props.setValue}
-            options={props.options}
-            setOptions={props.setOptions}
           />
         </ReactModal>
         <p className="message">{message}</p>
