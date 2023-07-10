@@ -33,3 +33,7 @@
 .manageDiners form .outerInputsWrapper .inputWrapper input {
   max-width: 8em;
 }
+.manageDiners .error {
+  color: red;
+  font-size: 0.75em;
+}

@@ -8,7 +8,7 @@ const Servings = (props) => {
   const [totalCalories, setTotalCalories] = useState(0);
 
   useEffect(() => {
-    setTotalCalories(props.chosenDiners.reduce((acc, diner) => acc + diner.calories, 0));
+    setTotalCalories(props.chosenDiners.reduce((acc, diner) => acc + parseInt(diner.calories), 0));
   }, [props.chosenDiners]);
 
   useEffect(() => {

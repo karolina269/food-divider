@@ -26,6 +26,16 @@
   font-weight: 300;
 }
 
+.formDish .btn.cancel:focus {
+  color: var(--dark);
+  background-color: var(--accent);
+}
+
+.formDish .btn.add:focus {
+  color: var(--dark);
+  background-color: var(--accent);
+}
+
 form input {
   padding: 0.25em 0.35em;
   border: 1px solid var(--dark);

@@ -78,6 +78,11 @@ button:hover:disabled {
   color: var(--dark);
 }
 
+.btn:focus {
+  color: var(--dark);
+  background-color: var(--accent);
+}
+
 .modal {
   position: absolute;
   left: 50%;

@@ -112,10 +112,12 @@ const EditDishModal = (props) => {
         {errors.weight && <p className="error">{errors.weight}</p>}
       </div>
       <div className="buttonsWrapper">
-        <button className="btn cancel" onClick={props.handleCloseModalEdit}>
+        <button type="button" className="btn cancel" onClick={props.handleCloseModalEdit} tabIndex="-1">
           Cancel
         </button>
-        <button className="btn">Save</button>
+        <button type="submit" className="btn add">
+          Save
+        </button>
       </div>
     </form>
   );

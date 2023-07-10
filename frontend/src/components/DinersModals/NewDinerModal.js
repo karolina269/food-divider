@@ -50,12 +50,12 @@ const NewDinerModal = (props) => {
     if (formData.calories < 0) {
       validationErrors.calories = true;
       setErrors((prevErrors) => {
-        return { ...prevErrors, weight: "The calorie intake must be non-negative" };
+        return { ...prevErrors, calories: "The calorie intake must be positive" };
       });
     } else {
-      validationErrors.weight = false;
+      validationErrors.calories = false;
       setErrors((prevErrors) => {
-        return { ...prevErrors, weight: "" };
+        return { ...prevErrors, calories: "" };
       });
     }
 
@@ -86,13 +86,15 @@ const NewDinerModal = (props) => {
       <label htmlFor="calories">Calories:</label>
       <div className="inputWrapper">
         <input type="number" name="calories" placeholder="daily calorie intake" value={formData.calories} onChange={handleInputChange} />
-        {errors.weight && <p className="error">{errors.calories}</p>}
+        {errors.calories && <p className="error">{errors.calories}</p>}
       </div>
       <div className="buttonsWrapper">
-        <button className="btn cancel" onClick={props.handleCloseModalNew}>
+        <button type="button" className="btn cancel" onClick={props.handleCloseModalNew} tabIndex="-1">
           Cancel
         </button>
-        <button className="btn">Add</button>
+        <button type="submit" className="btn add">
+          Add
+        </button>
       </div>
     </form>
   );
