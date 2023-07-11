@@ -10,19 +10,39 @@ const Login = (props) => {
 
   const [loginMessage, setLoginMessage] = useState("");
 
+  const validate = () => {
+    let validationError = false;
+    if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.email.trim())) {
+      validationError = true;
+      setLoginMessage("This doesn't look like an email address");
+    } else if (
+      formData.password.trim().length < 6 ||
+      !/^[^\s]*$/.test(formData.password.trim()) ||
+      !/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]+/.test(formData.password.trim())
+    ) {
+      setLoginMessage("Login details are not correct");
+      validationError = true;
+    }
+    return !validationError;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
-      .post("http://localhost:3005/user/login", {
-        email: formData.email,
-        password: formData.password,
-      })
-      .then((res) => {
-        setLoginMessage("");
-        props.setUser(res.data);
-        localStorage.setItem("user", JSON.stringify(res.data));
-      })
-      .catch((error) => setLoginMessage(error.response.data.message));
+    if (!validate()) {
+      return;
+    } else {
+      axios
+        .post("http://localhost:3005/user/login", {
+          email: formData.email,
+          password: formData.password,
+        })
+        .then((res) => {
+          setLoginMessage("");
+          props.setUser(res.data);
+          localStorage.setItem("user", JSON.stringify(res.data));
+        })
+        .catch((error) => setLoginMessage(error.response.data.message));
+    }
   };
 
   return (

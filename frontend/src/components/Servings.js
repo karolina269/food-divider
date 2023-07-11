@@ -28,7 +28,7 @@ const Servings = (props) => {
       {props.chosenDiners.map((diner) => {
         let servingSize = 0;
         if (props.unit === "g") {
-          servingSize = Math.round((diner.calories / totalCalories) * props.netWeight);
+          servingSize = Math.round((diner.calories / totalCalories) * props.netWeight * 10) / 10;
         } else {
           servingSize = Math.round((diner.calories / totalCalories) * props.netWeight * 100) / 100;
         }

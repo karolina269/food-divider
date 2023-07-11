@@ -14,7 +14,7 @@ const AppNav = (props) => {
   const handleDelete = (e) => {
     e.preventDefault();
     axios
-      .delete("http://localhost:3005/user/delete/")
+      .delete("http://localhost:3005/user/delete/" + props.user._id)
       .then(() => {
         console.log("Account has been successfully deleted");
         props.setUser(null);
