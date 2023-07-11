@@ -1,14 +1,25 @@
 import { gToOz, ozToG } from "../views/Home";
 import { Tooltip } from "react-tooltip";
 import "./TotalWeight.css";
+import { useRef, useState } from "react";
 
 const TotalWeight = (props) => {
+  const [totalWeightRounded, setTotalWeightRounded] = useState(0);
+
+  const totalWeightInput = useRef(null);
+
   const selectUnit = (e) => {
+    totalWeightInput.current.focus();
+    setTimeout(() => totalWeightInput.current.select(), 0);
+
     props.setUnit(e.target.value);
     if (e.target.value === "oz") {
-      props.setTotalWeight(Math.round(props.totalWeight * gToOz * 100) / 100);
-    } else {
-      props.setTotalWeight(Math.round(props.totalWeight * ozToG));
+      setTotalWeightRounded(Math.round(props.totalWeight * gToOz * 100) / 100);
+      props.setTotalWeight(props.totalWeight * gToOz);
+    }
+    if (e.target.value === "g") {
+      setTotalWeightRounded(Math.round(props.totalWeight * ozToG * 10) / 10);
+      props.setTotalWeight(props.totalWeight * ozToG);
     }
   };
 
@@ -31,13 +42,15 @@ const TotalWeight = (props) => {
       )}
       <div className="valueWrapper">
         <input
+          ref={totalWeightInput}
           className="totalWeight"
           type="number"
           id="totalWeight"
           name="totalWeight"
-          value={props.totalWeight}
+          value={totalWeightRounded}
           onChange={(e) => {
             props.setTotalWeight(e.target.value);
+            setTotalWeightRounded(e.target.value);
           }}
           onFocus={(e) => e.target.select()}
         />
