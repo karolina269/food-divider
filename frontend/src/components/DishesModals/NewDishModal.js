@@ -100,7 +100,7 @@ const NewDishModal = (props) => {
         {errors.weight && <p className="error">{errors.weight}</p>}
       </div>
       <div className="buttonsWrapper">
-        <button type="button" className="btn cancel" onClick={props.handleCloseModalNew} tabIndex="-1">
+        <button type="button" className="btn cancel" onClick={props.handleCloseModalNew}>
           Cancel
         </button>
         <button type="submit" className="btn add">
