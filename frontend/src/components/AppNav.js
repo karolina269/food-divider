@@ -11,16 +11,14 @@ const AppNav = (props) => {
   const [icon, setIcon] = useState(faBars);
   const nodeRef = useRef(null);
 
-  console.log(props.user);
-
   const handleDelete = (e) => {
     e.preventDefault();
     axios
-      .delete("http://localhost:3005/user/delete/", props.user.id)
-      .then(() => {
-        console.log("Account has been successfully deleted");
+      .delete("http://localhost:3005/user/delete/" + props.user.id)
+      .then((res) => {
         props.setUser(null);
         localStorage.setItem("user", null);
+        console.log(res.data.message);
       })
       .catch((error) => {
         console.error(error);
