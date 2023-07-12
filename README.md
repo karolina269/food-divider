@@ -34,6 +34,6 @@ in progress
 
 ## To Do
 
-- frontend: tooltips, ux refinement, rwd
+- frontend: rwd
 - frontend-mobile
 - auth0 ?
