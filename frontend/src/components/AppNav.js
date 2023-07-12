@@ -11,10 +11,12 @@ const AppNav = (props) => {
   const [icon, setIcon] = useState(faBars);
   const nodeRef = useRef(null);
 
+  console.log(props.user);
+
   const handleDelete = (e) => {
     e.preventDefault();
     axios
-      .delete("http://localhost:3005/user/delete/" + props.user._id)
+      .delete("http://localhost:3005/user/delete/", props.user.id)
       .then(() => {
         console.log("Account has been successfully deleted");
         props.setUser(null);

@@ -11,19 +11,19 @@ const Login = (props) => {
   const [loginMessage, setLoginMessage] = useState("");
 
   const validate = () => {
-    let validationError = false;
     if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.email.trim())) {
-      validationError = true;
       setLoginMessage("This doesn't look like an email address");
-    } else if (
+      return false;
+    }
+    if (
       formData.password.trim().length < 6 ||
       !/^[^\s]*$/.test(formData.password.trim()) ||
       !/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]+/.test(formData.password.trim())
     ) {
       setLoginMessage("Login details are not correct");
-      validationError = true;
+      return false;
     }
-    return !validationError;
+    return true;
   };
 
   const handleSubmit = (e) => {
@@ -40,6 +40,7 @@ const Login = (props) => {
           setLoginMessage("");
           props.setUser(res.data);
           localStorage.setItem("user", JSON.stringify(res.data));
+          console.log(res.data);
         })
         .catch((error) => setLoginMessage(error.response.data.message));
     }

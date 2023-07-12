@@ -44,6 +44,7 @@ module.exports = {
             res.status(200).json({
               email: user.email,
               jwt: token,
+              id: user._id,
             });
           } else {
             res.status(400).json({

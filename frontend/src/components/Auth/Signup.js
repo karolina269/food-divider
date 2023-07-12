@@ -47,6 +47,7 @@ const Signup = (props) => {
       });
     } else if (!/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]+/.test(formData.password.trim())) {
       validationErrors.password = true;
+      console.log("znaki spec");
       setErrors((prevErrors) => {
         return { ...prevErrors, password: "Password must contain at least one special character" };
       });
@@ -58,12 +59,12 @@ const Signup = (props) => {
     }
 
     if (formData.password.trim() !== formData.confirmPassword.trim()) {
-      validationErrors.password = true;
+      validationErrors.confirmPassword = true;
       setErrors((prevErrors) => {
         return { ...prevErrors, confirmPassword: "Passwords do not match" };
       });
     } else {
-      validationErrors.password = false;
+      validationErrors.confirmPassword = false;
       setErrors((prevErrors) => {
         return { ...prevErrors, confirmPassword: "" };
       });
