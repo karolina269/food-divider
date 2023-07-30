@@ -35,3 +35,16 @@
   vertical-align: top;
   margin-right: 3em;
 }
+
+.formField.password {
+  position: relative;
+}
+
+.passwordToggle {
+  color: var(--dark);
+  font-size: 1em;
+  position: absolute;
+  top: 55%;
+  right: 3%;
+  cursor: pointer;
+}

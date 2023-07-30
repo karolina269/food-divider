@@ -1,8 +1,36 @@
 import axios from "axios";
 import { useState } from "react";
 import useFormData from "../hooks/useFormData";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 const Signup = (props) => {
+  const [icon, setIcon] = useState(faEye);
+  const [passwordInputType, setPasswordInputType] = useState("password");
+
+  const [iconConfirm, setIconConfirm] = useState(faEye);
+  const [passwordConfirmInputType, setPasswordConfirmInputType] = useState("password");
+
+  const togglePasswordVisibility = () => {
+    if (passwordInputType === "password") {
+      setIcon(faEyeSlash);
+      setPasswordInputType("text");
+    } else if (passwordInputType === "text") {
+      setIcon(faEye);
+      setPasswordInputType("password");
+    }
+  };
+
+  const togglePasswordConfirmVisibility = () => {
+    if (passwordConfirmInputType === "password") {
+      setIconConfirm(faEyeSlash);
+      setPasswordConfirmInputType("text");
+    } else if (passwordConfirmInputType === "text") {
+      setIconConfirm(faEye);
+      setPasswordConfirmInputType("password");
+    }
+  };
+
   const { formData, handleInputChange } = useFormData({
     email: "",
     password: "",
@@ -110,14 +138,23 @@ const Signup = (props) => {
           <input type="email" name="email" placeholder="Email" onChange={handleInputChange} />
           {errors.email && <p className="error">{errors.email}</p>}
         </div>
-        <div className="formField">
+        <div className="formField password">
           <label htmlFor="password">Password:</label>
-          <input type="password" name="password" placeholder="********" onChange={handleInputChange} />
+          <input type={passwordInputType} name="password" placeholder="********" onChange={handleInputChange} />
+          <FontAwesomeIcon icon={icon} className="passwordToggle" onClick={() => togglePasswordVisibility()} />
           {errors.password && <p className="error">{errors.password}</p>}
         </div>
-        <div className="formField">
+        <div className="formField password">
           <label htmlFor="confirmPassword">Confirm password:</label>
-          <input type="password" id="confirmPassword " name="confirmPassword" onChange={handleInputChange} placeholder="********" />
+          <input
+            type={passwordConfirmInputType}
+            className="passwordInput"
+            id="confirmPassword "
+            name="confirmPassword"
+            onChange={handleInputChange}
+            placeholder="********"
+          />
+          <FontAwesomeIcon icon={iconConfirm} className="passwordToggle" onClick={() => togglePasswordConfirmVisibility()} />
           {errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
         </div>
         {signupMessage && <p className="error">{signupMessage}</p>}

@@ -1,8 +1,22 @@
 import axios from "axios";
 import { useState } from "react";
 import useFormData from "../hooks/useFormData";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 const Login = (props) => {
+  const [icon, setIcon] = useState(faEye);
+  const [passwordInputType, setPasswordInputType] = useState("password");
+
+  const togglePasswordVisibility = () => {
+    if (passwordInputType === "password") {
+      setIcon(faEyeSlash);
+      setPasswordInputType("text");
+    } else if (passwordInputType === "text") {
+      setIcon(faEye);
+      setPasswordInputType("password");
+    }
+  };
   const { formData, handleInputChange } = useFormData({
     email: "",
     password: "",
@@ -53,9 +67,10 @@ const Login = (props) => {
           <label htmlFor="email">Email:</label>
           <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleInputChange} />
         </div>
-        <div className="formField">
+        <div className="formField password">
           <label htmlFor="password">Password:</label>
-          <input type="password" name="password" placeholder="********" value={formData.password} onChange={handleInputChange} />
+          <input type={passwordInputType} name="password" placeholder="********" value={formData.password} onChange={handleInputChange} />
+          <FontAwesomeIcon icon={icon} className="passwordToggle" onClick={() => togglePasswordVisibility()} />
         </div>
         {loginMessage && <p className="error">{loginMessage}</p>}
         <div className="formField">
