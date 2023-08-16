@@ -37,3 +37,19 @@ in progress
 - frontend: rwd
 - frontend-mobile
 - auth0 ?
+
+### How to run the application:
+
+```shell
+# clone the git repo
+git clone https://github.com/karolina269/food-divider.git
+
+cd food-divider/backend/
+npm install
+node index.js
+
+cd food-divider/frontend/
+npm install
+npm start
+
+```
